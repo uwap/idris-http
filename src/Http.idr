@@ -1,5 +1,7 @@
 module Http
 
+import Data.Vect
+
 ||| The HTTP Method which is either POST or GET
 data Method = POST | GET
 
@@ -8,7 +10,7 @@ Host : Type
 Host = String
 
 ||| Port is an alias for Int.
--- Todo: Maybe depend on the port range 0-65535
+-- TODO: Maybe depend on the port range 0-65535
 Port : Type
 Port = Int
 
@@ -31,8 +33,25 @@ record Request where
   path     : String
   ||| A list of query tuples.
   ||| Setting query to [("v", "1.0")] will append "?v=1.0" to the path
-  query    : q ** Vect q (String, String)
+  query    : Vect q (String, String)
   ||| The post data which gets send when method = POST.
-  postData : q ** Vect q (String, String)
+  postData : Vect q (String, String)
   ||| The version of the HTTP Request.
   version  : HttpVersion
+
+urlEncode : String -> String
+urlEncode = id -- TODO: Implement
+
+||| This functions folds a list of query parameters
+||| into a query string without prepending '?'.
+||| It will also url encode all strings.
+|||
+||| For example `encodeQuery [("hello", "world"), ("foo", "bar")]`
+||| encodes to "hello=world&foo=bar".
+|||
+||| @ n The length of the vector => the number of query parameters
+||| @ q The vector of query param tuples
+encodeQuery : (q : Vect n (String, String)) -> String
+encodeQuery [] = ""
+encodeQuery ((k,v) :: []) = urlEncode k ++ "=" ++ urlEncode v
+encodeQuery ((k,v) :: xs) = urlEncode k ++ "=" ++ urlEncode v ++ "&" ++ encodeQuery xs
