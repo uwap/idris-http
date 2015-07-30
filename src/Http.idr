@@ -2,8 +2,14 @@ module Http
 
 import Data.Vect
 
+%default total
+
 ||| The HTTP Method which is either POST or GET
 data Method = POST | GET
+
+instance Show Method where
+  show POST = "POST"
+  show GET  = "GET"
 
 ||| A String-alias for Hosts.
 Host : Type
@@ -35,7 +41,7 @@ record Request where
   ||| Setting query to [("v", "1.0")] will append "?v=1.0" to the path
   query    : Vect q (String, String)
   ||| The post data which gets send when method = POST.
-  postData : Vect q (String, String)
+  postData : Vect p (String, String)
   ||| The version of the HTTP Request.
   version  : HttpVersion
 
@@ -55,3 +61,9 @@ encodeQuery : (q : Vect n (String, String)) -> String
 encodeQuery [] = ""
 encodeQuery ((k,v) :: []) = urlEncode k ++ "=" ++ urlEncode v
 encodeQuery ((k,v) :: xs) = urlEncode k ++ "=" ++ urlEncode v ++ "&" ++ encodeQuery xs
+
+resolveRequest : Request -> String
+resolveRequest req = show (method req) ++ " "
+                  ++ path req ++ "?" ++ encodeQuery (query req) ++ " "
+                  ++ version req
+              -- TODO: Implement it properly
