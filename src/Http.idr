@@ -23,14 +23,16 @@ HttpVersion = String
 record Request where
   constructor MkRequest
   ||| The requests method. Either POST or GET
-  method  : Method
+  method   : Method
   ||| The Host to send the request to
-  host    : Host
-  port    : Port
+  host     : Host
+  port     : Port
   ||| The path that is requested. "/index.html" for example.
-  path    : String
+  path     : String
   ||| A list of query tuples.
   ||| Setting query to [("v", "1.0")] will append "?v=1.0" to the path
-  query   : q ** Vect q (String, String)
+  query    : q ** Vect q (String, String)
+  ||| The post data which gets send when method = POST.
+  postData : q ** Vect q (String, String)
   ||| The version of the HTTP Request.
-  version : HttpVersion
+  version  : HttpVersion
