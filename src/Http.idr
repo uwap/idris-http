@@ -1,7 +1,8 @@
 module Http
 
-import Data.So
 import Data.Vect
+
+import Network.Socket
 
 %default total
 
@@ -15,10 +16,6 @@ instance Show Method where
 ||| A String-alias for Hosts.
 Host : Type
 Host = String
-
-||| Port is an alias for Int.
-Port : Type
-Port = Int
 
 ||| A type alias for HTTP Versions.
 ||| HttpVersion shall have the value "HTTP/1.0" or "HTTP/1.1"

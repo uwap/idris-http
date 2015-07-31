@@ -1,4 +1,5 @@
 package http
 
+modules   = Http
 sourcedir = src
-modules = Http
+opts      = "-p contrib --total"
