@@ -4,8 +4,6 @@ import Data.Vect
 
 import Network.Socket
 
-%default total
-
 ||| The HTTP Method which is either POST or GET
 data Method = POST | GET
 
@@ -76,3 +74,18 @@ requestLine req = show (method req) ++ " " ++ requestUri req ++ " " ++ version r
 
 resolveRequest : Request -> String
 resolveRequest req = requestLine req
+
+sendRequest : Request -> IO (Either SocketError String)
+sendRequest req =
+  case !(socket AF_INET Stream 0) of
+    Left err   => return (Left err)
+    Right sock =>
+      case !(connect sock (Hostname (host req)) (port req)) of
+        0 =>
+          case !(send sock (resolveRequest req)) of
+            Left err => return (Left err)
+            Right _  =>
+              case !(recv sock 65536) of
+                Left err       => return (Left err)
+                Right (str, _) => return (Right str)
+        err => return (Left err)
