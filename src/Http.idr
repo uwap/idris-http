@@ -1,5 +1,6 @@
 module Http
 
+import Data.So
 import Data.Vect
 
 %default total
@@ -16,7 +17,6 @@ Host : Type
 Host = String
 
 ||| Port is an alias for Int.
--- TODO: Maybe depend on the port range 0-65535
 Port : Type
 Port = Int
 
@@ -48,7 +48,7 @@ record Request where
 urlEncode : String -> String
 urlEncode = id -- TODO: Implement
 
-||| This functions folds a list of query parameters
+||| This fiunctions folds a list of query parameters
 ||| into a query string without prepending '?'.
 ||| It will also url encode all strings.
 |||
@@ -62,8 +62,20 @@ encodeQuery [] = ""
 encodeQuery ((k,v) :: []) = urlEncode k ++ "=" ++ urlEncode v
 encodeQuery ((k,v) :: xs) = urlEncode k ++ "=" ++ urlEncode v ++ "&" ++ encodeQuery xs
 
+||| The URI of the request.
+||| It is the request path concatinated with the query string
+||| delivered by encodeQuery.
+|||
+||| @ req The request to get the URI from
+requestUri : (req : Request) -> String
+requestUri req = path req ++ "?" ++ encodeQuery (query req)
+                -- TODO: Send no question mark when query is empty
+
+||| This is the first line of a Full-Request defined in RFC1945 Section 5.1.
+|||
+||| @ req The request to get the request line from
+requestLine : (req : Request) -> String
+requestLine req = show (method req) ++ " " ++ requestUri req ++ " " ++ version req ++ "\r\n"
+
 resolveRequest : Request -> String
-resolveRequest req = show (method req) ++ " "
-                  ++ path req ++ "?" ++ encodeQuery (query req) ++ " "
-                  ++ version req
-              -- TODO: Implement it properly
+resolveRequest req = requestLine req
