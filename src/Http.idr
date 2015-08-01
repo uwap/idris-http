@@ -37,6 +37,9 @@ record Request where
   ||| The post data which gets send when method = POST.
   postData : Vect p (String, String)
 
+  ||| Headers to pass along.
+  headers : Vect q (String, String)
+
 urlEncode : String -> String
 urlEncode = id -- TODO: Implement
 
@@ -60,13 +63,17 @@ encodeQuery ((k,v) :: xs) =
 ||| @ req The request to get the request line from
 requestLine : (req : Request) -> String
 requestLine req =
-  show (method req) ++ " " ++ uriToString (uri req) ++ " " ++ httpVersion ++ "\r\n"
+  show (method req) ++ " " ++ uriToString (uri req) ++ " " ++ httpVersion
 
 resolveRequest : Request -> String
-resolveRequest req = requestLine req
+resolveRequest req =
+  requestLine req ++
+  foldr (\(y, z), x => x ++ "\r\n" ++ y ++ ": " ++ z) "" (headers req) ++
+  "\r\n\r\n"
 
 sendRequest : Request -> IO (Either SocketError String)
-sendRequest req =
+sendRequest req = do
+  print (resolveRequest req)
   case !(socket AF_INET Stream 0) of
     Left err   => return (Left err)
     Right sock =>
