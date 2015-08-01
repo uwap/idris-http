@@ -22,7 +22,7 @@ uriToString u =
   uriPath u ++ uriQuery u ++ uriFragment u
   where
     authStrMaybe : URIAuth -> Maybe String
-    authStrMaybe u' =
+    authStrMaybe u' = return $
       !(uriUsername u') ++ ":" ++ !(uriUsername u') ++ "@"
 
     authStr u = fromMaybe "" (authStrMaybe u)
