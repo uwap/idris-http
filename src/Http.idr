@@ -20,25 +20,49 @@ Host = String
 HttpVersion : Type
 HttpVersion = String
 
+httpVersion : HttpVersion
+httpVersion = "HTTP/1.1"
+
+record URIAuth where
+  constructor MkURIAuth
+  uriUsername : Maybe String
+  uriPassword : Maybe String
+  uriHost : String
+  uriPort : Int
+
+record URI where
+  constructor MkURI
+  uriScheme : String
+  uriAuthority : URIAuth
+  uriPath : String
+  uriQuery : String
+  uriFragment : String
+
+uriToString : URI -> String
+uriToString u =
+  uriScheme u ++ "://" ++ authStr (uriAuthority u) ++
+  (uriHost . uriAuthority $ u) ++ ":" ++ show (uriPort . uriAuthority $ u) ++
+  uriPath u ++ uriQuery u ++ uriFragment u
+  where
+    authStrMaybe : URIAuth -> Maybe String
+    authStrMaybe u' =
+      liftA2 (++) (map (++ ":") (uriUsername u')) (map (++ "@") (uriUsername u'))
+
+    authStr u = fromMaybe "" (authStrMaybe u)
+
 ||| A data type for requests.
 ||| A request consists out of a method,
 ||| a host, a port, a path, a query and a http version.
 record Request where
   constructor MkRequest
-  ||| The requests method. Either POST or GET
+  ||| The requests method. Either POST or GET.
   method   : Method
-  ||| The Host to send the request to
-  host     : Host
-  port     : Port
-  ||| The path that is requested. "/index.html" for example.
-  path     : String
-  ||| A list of query tuples.
-  ||| Setting query to [("v", "1.0")] will append "?v=1.0" to the path
-  query    : Vect q (String, String)
+
+  ||| The URI we're attempting to access.
+  uri : URI
+
   ||| The post data which gets send when method = POST.
   postData : Vect p (String, String)
-  ||| The version of the HTTP Request.
-  version  : HttpVersion
 
 urlEncode : String -> String
 urlEncode = id -- TODO: Implement
@@ -55,22 +79,24 @@ urlEncode = id -- TODO: Implement
 encodeQuery : (q : Vect n (String, String)) -> String
 encodeQuery [] = ""
 encodeQuery ((k,v) :: []) = urlEncode k ++ "=" ++ urlEncode v
-encodeQuery ((k,v) :: xs) = urlEncode k ++ "=" ++ urlEncode v ++ "&" ++ encodeQuery xs
+encodeQuery ((k,v) :: xs) =
+  urlEncode k ++ "=" ++ urlEncode v ++ "&" ++ encodeQuery xs
 
 ||| The URI of the request.
 ||| It is the request path concatinated with the query string
 ||| delivered by encodeQuery.
 |||
 ||| @ req The request to get the URI from
-requestUri : (req : Request) -> String
-requestUri req = path req ++ "?" ++ encodeQuery (query req)
+--requestUri : (req : Request) -> String
+--requestUri req = path req ++ "?" ++ encodeQuery (query req)
                 -- TODO: Send no question mark when query is empty
 
 ||| This is the first line of a Full-Request defined in RFC1945 Section 5.1.
 |||
 ||| @ req The request to get the request line from
 requestLine : (req : Request) -> String
-requestLine req = show (method req) ++ " " ++ requestUri req ++ " " ++ version req ++ "\r\n"
+requestLine req =
+  show (method req) ++ " " ++ uriToString (uri req) ++ " " ++ httpVersion ++ "\r\n"
 
 resolveRequest : Request -> String
 resolveRequest req = requestLine req
@@ -80,7 +106,7 @@ sendRequest req =
   case !(socket AF_INET Stream 0) of
     Left err   => return (Left err)
     Right sock =>
-      case !(connect sock (Hostname (host req)) (port req)) of
+      case !(connect sock (Hostname (uriHost . uriAuthority . uri $ req)) (uriPort . uriAuthority . uri $ req)) of
         0 =>
           case !(send sock (resolveRequest req)) of
             Left err => return (Left err)
