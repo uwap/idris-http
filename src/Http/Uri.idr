@@ -21,8 +21,12 @@ uriToString u =
   (uriHost . uriAuthority $ u) ++ ":" ++ show (uriPort . uriAuthority $ u) ++
   uriPath u ++ uriQuery u ++ uriFragment u
   where
+    authPassword : URIAuth -> String
+    authPassword u' = fromMaybe "" (uriPassword u' >>= return . (":" ++))
+
     authStrMaybe : URIAuth -> Maybe String
     authStrMaybe u' = return $
-      !(uriUsername u') ++ ":" ++ !(uriPassword u') ++ "@"
+      !(uriUsername u') ++ authPassword u' ++ "@"
 
-    authStr u = fromMaybe "" (authStrMaybe u)
+    authStr : URIAuth -> String
+    authStr u' = fromMaybe "" (authStrMaybe u')
