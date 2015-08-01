@@ -1,0 +1,431 @@
+<!DOCTYPE HTML>
+<html><head><title>IdrisDoc: Data.VectType.Vect</title><link type="text/css" rel="stylesheet" href="../styles.css"></head><body class="namespace"><div class="wrapper"><header><strong>IdrisDoc</strong>: Data.VectType.Vect<nav><a href="../index.html">Index</a></nav></header><div class="container"><h1>Data.VectType.Vect</h1><dl class="decls"><dt id="Data.VectType.Vect.zipWith3"><span class="name function" title="Data.VectType.Vect.zipWith3">zipWith3</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="implicit boundvar" title="">a</span> ->
+<span class="implicit boundvar" title="">b</span> ->
+<span class="implicit boundvar" title="">c</span> ->
+<span class="implicit boundvar" title="">d</span>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">b</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">c</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">d</span></span></dt><dd><p>Combine three equal-length vectors into a vector with some function</p>
+</dd><dt id="Data.VectType.Vect.zipWith"><span class="name function" title="Data.VectType.Vect.zipWith">zipWith</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="implicit boundvar" title="">a</span> ->
+<span class="implicit boundvar" title="">b</span> ->
+<span class="implicit boundvar" title="">c</span>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">b</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">c</span></span></dt><dd><p>Combine two equal-length vectors pairwise with some function</p>
+</dd><dt id="Data.VectType.Vect.zip3"><span class="name function" title="Data.VectType.Vect.zip3">zip3</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">b</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">c</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">(</a><span class="implicit boundvar" title="">a</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">,</a>
+<span class="implicit boundvar" title="">b</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">,</a>
+<span class="implicit boundvar" title="">c</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">)</a></span></dt><dd><p>Combine three equal-length vectors elementwise into a vector of tuples</p>
+</dd><dt id="Data.VectType.Vect.zip"><span class="name function" title="Data.VectType.Vect.zip">zip</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">b</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">(</a><span class="implicit boundvar" title="">a</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">,</a>
+<span class="implicit boundvar" title="">b</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">)</a></span></dt><dd><p>Combine two equal-length vectors pairwise</p>
+</dd><dt id="Data.VectType.Vect.vectToMaybe"><span class="name function" title="Data.VectType.Vect.vectToMaybe">vectToMaybe</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Maybe.Maybe" href="Prelude.Maybe.html#Prelude.Maybe.Maybe">Maybe</a> <span class="implicit boundvar" title="">a</span></span></dt><dd></dd><dt id="Data.VectType.Vect.vectNilRightNeutral"><span class="name function" title="Data.VectType.Vect.vectNilRightNeutral">vectNilRightNeutral</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="boundvar" title="">xs</span> : <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span>) ->
+<span class="boundvar" title="">xs</span> <a class="function" title="Data.VectType.Vect.++" href="Data.VectType.Vect.html#Data.VectType.Vect.++">++</a>
+<span class="data" title="[]">[]</span> <a class="type" title="=" href="[builtins].html#=">=</a>
+<span class="boundvar" title="">xs</span></span></dt><dd></dd><dt id="Data.VectType.Vect.vectConsCong"><span class="name function" title="Data.VectType.Vect.vectConsCong">vectConsCong</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="boundvar" title="">x</span> : <span class="implicit boundvar" title="">a</span>) ->
+(<span class="boundvar" title="">xs</span> : <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span>) ->
+(<span class="boundvar" title="">ys</span> : <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">m</span>
+<span class="implicit boundvar" title="">a</span>) ->
+(<span class="boundvar" title="">xs</span> <a class="type" title="=" href="[builtins].html#=">=</a>
+<span class="boundvar" title="">ys</span>) ->
+<span class="boundvar" title="">x</span> <a class="constructor" title="Data.VectType.Vect.::" href="Data.VectType.Vect.html#Data.VectType.Vect.::">::</a>
+<span class="boundvar" title="">xs</span> <a class="type" title="=" href="[builtins].html#=">=</a>
+<span class="boundvar" title="">x</span> <a class="constructor" title="Data.VectType.Vect.::" href="Data.VectType.Vect.html#Data.VectType.Vect.::">::</a>
+<span class="boundvar" title="">ys</span></span></dt><dd></dd><dt id="Data.VectType.Vect.vectAppendAssociative"><span class="name function" title="Data.VectType.Vect.vectAppendAssociative">vectAppendAssociative</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="boundvar" title="">x</span> : <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">xLen</span>
+<span class="implicit boundvar" title="">a</span>) ->
+(<span class="boundvar" title="">y</span> : <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">yLen</span>
+<span class="implicit boundvar" title="">a</span>) ->
+(<span class="boundvar" title="">z</span> : <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">zLen</span>
+<span class="implicit boundvar" title="">a</span>) ->
+<span class="boundvar" title="">x</span> <a class="function" title="Data.VectType.Vect.++" href="Data.VectType.Vect.html#Data.VectType.Vect.++">++</a>
+<span class="boundvar" title="">y</span> <a class="function" title="Data.VectType.Vect.++" href="Data.VectType.Vect.html#Data.VectType.Vect.++">++</a>
+<span class="boundvar" title="">z</span> <a class="type" title="=" href="[builtins].html#=">=</a>
+(<span class="boundvar" title="">x</span> <a class="function" title="Data.VectType.Vect.++" href="Data.VectType.Vect.html#Data.VectType.Vect.++">++</a>
+<span class="boundvar" title="">y</span>) <a class="function" title="Data.VectType.Vect.++" href="Data.VectType.Vect.html#Data.VectType.Vect.++">++</a>
+<span class="boundvar" title="">z</span></span></dt><dd></dd><dt id="Data.VectType.Vect.updateAt"><span class="name function" title="Data.VectType.Vect.updateAt">updateAt</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="documented boundvar" title="the index to replace at">i</span> : <a class="type" title="Data.Fin.Fin" href="Data.Fin.html#Data.Fin.Fin">Fin</a> <span class="implicit boundvar" title="">n</span>) ->
+(<span class="documented boundvar" title="the update function">f</span> : <span class="implicit boundvar" title="">t</span> ->
+<span class="implicit boundvar" title="">t</span>) ->
+(<span class="documented boundvar" title="the vector to replace in">xs</span> : <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">t</span>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">t</span></span></dt><dd><p>Replace the element at a particular index with the result of applying a function to it</p>
+<dl><dt>i</dt><dd><p>the index to replace at</p>
+</dd><dt>f</dt><dd><p>the update function</p>
+</dd><dt>xs</dt><dd><p>the vector to replace in</p>
+</dd></dl></dd><dt id="Data.VectType.Vect.unzip3"><span class="name function" title="Data.VectType.Vect.unzip3">unzip3</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">(</a><span class="implicit boundvar" title="">a</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">,</a>
+<span class="implicit boundvar" title="">b</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">,</a>
+<span class="implicit boundvar" title="">c</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">)</a> ->
+<a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">(</a><a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">,</a>
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">b</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">,</a>
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">c</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">)</a></span></dt><dd><p>Convert a vector of three-tuples to a triplet of vectors</p>
+</dd><dt id="Data.VectType.Vect.unzip"><span class="name function" title="Data.VectType.Vect.unzip">unzip</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">(</a><span class="implicit boundvar" title="">a</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">,</a>
+<span class="implicit boundvar" title="">b</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">)</a> ->
+<a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">(</a><a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">,</a>
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">b</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">)</a></span></dt><dd><p>Convert a vector of pairs to a pair of vectors</p>
+</dd><dt id="Data.VectType.Vect.transpose"><span class="name function" title="Data.VectType.Vect.transpose">transpose</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">m</span>
+(<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+(<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">m</span>
+<span class="implicit boundvar" title="">a</span>)</span></dt><dd><p>Transpose a Vect of Vects, turning rows into columns and vice versa.</p>
+<p>As the types ensure rectangularity, this is an involution, unlike <code>Prelude.List.transpose</code>.</p>
+</dd><dt id="Data.VectType.Vect.takeWhile"><span class="name function" title="Data.VectType.Vect.takeWhile">takeWhile</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="documented boundvar" title="the predicate">p</span> : <span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">(</a><span class="boundvar" title="">q</span> : <a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a> <a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">**</a> <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="boundvar" title="">q</span>
+<span class="implicit boundvar" title="">a</span><a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">)</a></span></dt><dd><p>Take the longest prefix of a Vect such that all elements satisfy some<br />
+Boolean predicate.</p>
+<dl><dt>p</dt><dd><p>the predicate</p>
+</dd></dl></dd><dt id="Data.VectType.Vect.take"><span class="name function" title="Data.VectType.Vect.take">take</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="documented boundvar" title="the number of elements to take">n</span> : <a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> (<span class="documented boundvar" title="the number of elements to take">n</span> <a class="function" title="Prelude.Classes.+" href="Prelude.Classes.html#Prelude.Classes.+">+</a>
+<span class="implicit boundvar" title="">m</span>)
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="documented boundvar" title="the number of elements to take">n</span>
+<span class="implicit boundvar" title="">a</span></span></dt><dd><p>Get the first n elements of a Vect</p>
+<dl><dt>n</dt><dd><p>the number of elements to take</p>
+</dd></dl></dd><dt id="Data.VectType.Vect.tail"><span class="name function" title="Data.VectType.Vect.tail">tail</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> (<a class="constructor" title="Prelude.Nat.S" href="Prelude.Nat.html#Prelude.Nat.S">S</a> <span class="implicit boundvar" title="">n</span>)
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span></span></dt><dd><p>All but the first element of the vector</p>
+</dd><dt id="Data.VectType.Vect.splitAt"><span class="name function" title="Data.VectType.Vect.splitAt">splitAt</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="documented boundvar" title="the index to split at">n</span> : <a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a>) ->
+(<span class="documented boundvar" title="the Vect to split in two">xs</span> : <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> (<span class="documented boundvar" title="the index to split at">n</span> <a class="function" title="Prelude.Classes.+" href="Prelude.Classes.html#Prelude.Classes.+">+</a>
+<span class="implicit boundvar" title="">m</span>)
+<span class="implicit boundvar" title="">a</span>) ->
+<a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">(</a><a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="documented boundvar" title="the index to split at">n</span>
+<span class="implicit boundvar" title="">a</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">,</a>
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">m</span>
+<span class="implicit boundvar" title="">a</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">)</a></span></dt><dd><p>A tuple where the first element is a Vect of the n first elements and<br />
+the second element is a Vect of the remaining elements of the original Vect<br />
+It is equivalent to (take n xs, drop n xs)</p>
+<dl><dt>n</dt><dd><p>the index to split at</p>
+</dd><dt>xs</dt><dd><p>the Vect to split in two</p>
+</dd></dl></dd><dt id="Data.VectType.Vect.scanl"><span class="name function" title="Data.VectType.Vect.scanl">scanl</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="implicit boundvar" title="">b</span> ->
+<span class="implicit boundvar" title="">a</span> ->
+<span class="implicit boundvar" title="">b</span>) ->
+<span class="implicit boundvar" title="">b</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> (<a class="constructor" title="Prelude.Nat.S" href="Prelude.Nat.html#Prelude.Nat.S">S</a> <span class="implicit boundvar" title="">n</span>)
+<span class="implicit boundvar" title="">b</span></span></dt><dd></dd><dt id="Data.VectType.Vect.reverse"><span class="name function" title="Data.VectType.Vect.reverse">reverse</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span></span></dt><dd><p>Reverse the order of the elements of a vector</p>
+</dd><dt id="Data.VectType.Vect.replicate"><span class="name function" title="Data.VectType.Vect.replicate">replicate</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="documented boundvar" title="the number of times to repeat it">n</span> : <a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a>) ->
+(<span class="documented boundvar" title="the value to repeat">x</span> : <span class="implicit boundvar" title="">a</span>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="documented boundvar" title="the number of times to repeat it">n</span>
+<span class="implicit boundvar" title="">a</span></span></dt><dd><p>Repeate some value n times</p>
+<dl><dt>n</dt><dd><p>the number of times to repeat it</p>
+</dd><dt>x</dt><dd><p>the value to repeat</p>
+</dd></dl></dd><dt id="Data.VectType.Vect.replaceAt"><span class="name function" title="Data.VectType.Vect.replaceAt">replaceAt</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.Fin.Fin" href="Data.Fin.html#Data.Fin.Fin">Fin</a> <span class="implicit boundvar" title="">n</span> ->
+<span class="implicit boundvar" title="">t</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">t</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">t</span></span></dt><dd><p>Replace an element at a particlar index with another</p>
+</dd><dt id="Data.VectType.Vect.range"><span class="name function" title="Data.VectType.Vect.range">range</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+(<a class="type" title="Data.Fin.Fin" href="Data.Fin.html#Data.Fin.Fin">Fin</a> <span class="implicit boundvar" title="">n</span>)</span></dt><dd></dd><dt id="Data.VectType.Vect.partition"><span class="name function" title="Data.VectType.Vect.partition">partition</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">(</a><a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">(</a><span class="boundvar" title="">p</span> : <a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a> <a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">**</a> <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="boundvar" title="">p</span>
+<span class="implicit boundvar" title="">a</span><a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">)</a><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">,</a>
+<a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">(</a><span class="boundvar" title="">q</span> : <a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a> <a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">**</a> <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="boundvar" title="">q</span>
+<span class="implicit boundvar" title="">a</span><a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">)</a><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">)</a></span></dt><dd></dd><dt id="Data.VectType.Vect.nubBy"><span class="name function" title="Data.VectType.Vect.nubBy">nubBy</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="implicit boundvar" title="">a</span> ->
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">(</a><span class="boundvar" title="">p</span> : <a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a> <a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">**</a> <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="boundvar" title="">p</span>
+<span class="implicit boundvar" title="">a</span><a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">)</a></span></dt><dd><p>Make the elements of some vector unique by some test</p>
+</dd><dt id="Data.VectType.Vect.nub"><span class="name function" title="Data.VectType.Vect.nub">nub</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Prelude.Classes.Eq" href="Prelude.Classes.html#Prelude.Classes.Eq">Eq</a> <span class="implicit boundvar" title="">a</span> =>
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">(</a><span class="boundvar" title="">p</span> : <a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a> <a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">**</a> <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="boundvar" title="">p</span>
+<span class="implicit boundvar" title="">a</span><a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">)</a></span></dt><dd><p>Make the elements of some vector unique by the default Boolean equality</p>
+</dd><dt id="Data.VectType.Vect.maybeToVect"><span class="name function" title="Data.VectType.Vect.maybeToVect">maybeToVect</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Prelude.Maybe.Maybe" href="Prelude.Maybe.html#Prelude.Maybe.Maybe">Maybe</a> <span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">(</a><span class="boundvar" title="">p</span> : <a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a> <a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">**</a> <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="boundvar" title="">p</span>
+<span class="implicit boundvar" title="">a</span><a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">)</a></span></dt><dd></dd><dt id="Data.VectType.Vect.mapMaybe"><span class="name function" title="Data.VectType.Vect.mapMaybe">mapMaybe</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="documented boundvar" title="the partial function (expressed by returning &lt;code&gt;Maybe&lt;/code&gt;)">f</span> : <span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Maybe.Maybe" href="Prelude.Maybe.html#Prelude.Maybe.Maybe">Maybe</a> <span class="implicit boundvar" title="">b</span>) ->
+(<span class="documented boundvar" title="the vector to check for results">xs</span> : <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span>) ->
+<a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">(</a><span class="boundvar" title="">m</span> : <a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a> <a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">**</a> <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="boundvar" title="">m</span>
+<span class="implicit boundvar" title="">b</span><a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">)</a></span></dt><dd><p>Map a partial function across a vector, returning those elements for which<br />
+the function had a value.</p>
+<p>The first projection of the resulting pair (ie the length) will always be<br />
+at most the length of the input vector. This is not, however, guaranteed<br />
+by the type.</p>
+<dl><dt>f</dt><dd><p>the partial function (expressed by returning <code>Maybe</code>)</p>
+</dd><dt>xs</dt><dd><p>the vector to check for results</p>
+</dd></dl></dd><dt id="Data.VectType.Vect.lookupBy"><span class="name function" title="Data.VectType.Vect.lookupBy">lookupBy</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="documented boundvar" title="the comparison operator for keys (True if they match)">p</span> : <span class="implicit boundvar" title="">a</span> ->
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a>) ->
+(<span class="documented boundvar" title="the key to look for">e</span> : <span class="implicit boundvar" title="">a</span>) ->
+(<span class="boundvar" title="">xs</span> : <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">(</a><span class="implicit boundvar" title="">a</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">,</a>
+<span class="implicit boundvar" title="">b</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">)</a>) ->
+<a class="type" title="Prelude.Maybe.Maybe" href="Prelude.Maybe.html#Prelude.Maybe.Maybe">Maybe</a> <span class="implicit boundvar" title="">b</span></span></dt><dd><p>Find the association of some key with a user-provided comparison</p>
+<dl><dt>p</dt><dd><p>the comparison operator for keys (True if they match)</p>
+</dd><dt>e</dt><dd><p>the key to look for</p>
+</dd></dl></dd><dt id="Data.VectType.Vect.lookup"><span class="name function" title="Data.VectType.Vect.lookup">lookup</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Prelude.Classes.Eq" href="Prelude.Classes.html#Prelude.Classes.Eq">Eq</a> <span class="implicit boundvar" title="">a</span> =>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">(</a><span class="implicit boundvar" title="">a</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">,</a>
+<span class="implicit boundvar" title="">b</span><a class="type" title="Builtins.Pair" href="Builtins.html#Builtins.Pair">)</a> ->
+<a class="type" title="Prelude.Maybe.Maybe" href="Prelude.Maybe.html#Prelude.Maybe.Maybe">Maybe</a> <span class="implicit boundvar" title="">b</span></span></dt><dd><p>Find the assocation of some key using the default Boolean equality test</p>
+</dd><dt id="Data.VectType.Vect.length"><span class="name function" title="Data.VectType.Vect.length">length</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="documented boundvar" title="the vector">xs</span> : <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit documented boundvar" title="the length (provably equal to the return value)">n</span>
+<span class="implicit boundvar" title="">a</span>) ->
+<a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a></span></dt><dd><p>Calculate the length of a <code>Vect</code>.</p>
+<p><strong>Note</strong>: this is only useful if you don't already statically know the length<br />
+and you want to avoid matching the implicit argument for erasure reasons.</p>
+<dl><dt>n</dt><dd><p>the length (provably equal to the return value)</p>
+</dd><dt>xs</dt><dd><p>the vector</p>
+</dd></dl></dd><dt id="Data.VectType.Vect.last"><span class="name function" title="Data.VectType.Vect.last">last</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> (<a class="constructor" title="Prelude.Nat.S" href="Prelude.Nat.html#Prelude.Nat.S">S</a> <span class="implicit boundvar" title="">n</span>)
+<span class="implicit boundvar" title="">a</span> ->
+<span class="implicit boundvar" title="">a</span></span></dt><dd><p>The last element of the vector</p>
+</dd><dt id="Data.VectType.Vect.isSuffixOfBy"><span class="name function" title="Data.VectType.Vect.isSuffixOfBy">isSuffixOfBy</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="implicit boundvar" title="">a</span> ->
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">m</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a></span></dt><dd></dd><dt id="Data.VectType.Vect.isSuffixOf"><span class="name function" title="Data.VectType.Vect.isSuffixOf">isSuffixOf</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Prelude.Classes.Eq" href="Prelude.Classes.html#Prelude.Classes.Eq">Eq</a> <span class="implicit boundvar" title="">a</span> =>
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">m</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a></span></dt><dd></dd><dt id="Data.VectType.Vect.isPrefixOfBy"><span class="name function" title="Data.VectType.Vect.isPrefixOfBy">isPrefixOfBy</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="implicit boundvar" title="">a</span> ->
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">m</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a></span></dt><dd></dd><dt id="Data.VectType.Vect.isPrefixOf"><span class="name function" title="Data.VectType.Vect.isPrefixOf">isPrefixOf</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Prelude.Classes.Eq" href="Prelude.Classes.html#Prelude.Classes.Eq">Eq</a> <span class="implicit boundvar" title="">a</span> =>
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">m</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a></span></dt><dd></dd><dt id="Data.VectType.Vect.intersperse"><span class="name function" title="Data.VectType.Vect.intersperse">intersperse</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="documented boundvar" title="the element to intersperse">sep</span> : <span class="implicit boundvar" title="">a</span>) ->
+(<span class="documented boundvar" title="the vector to separate with &lt;code&gt;sep&lt;/code&gt;">xs</span> : <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> (<span class="implicit boundvar" title="">n</span> <a class="function" title="Prelude.Classes.+" href="Prelude.Classes.html#Prelude.Classes.+">+</a>
+<a class="function" title="Prelude.Nat.pred" href="Prelude.Nat.html#Prelude.Nat.pred">pred</a> <span class="implicit boundvar" title="">n</span>)
+<span class="implicit boundvar" title="">a</span></span></dt><dd><p>Alternate an element between the other elements of a vector</p>
+<dl><dt>sep</dt><dd><p>the element to intersperse</p>
+</dd><dt>xs</dt><dd><p>the vector to separate with <code>sep</code></p>
+</dd></dl></dd><dt id="Data.VectType.Vect.insertAt"><span class="name function" title="Data.VectType.Vect.insertAt">insertAt</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.Fin.Fin" href="Data.Fin.html#Data.Fin.Fin">Fin</a> (<a class="constructor" title="Prelude.Nat.S" href="Prelude.Nat.html#Prelude.Nat.S">S</a> <span class="implicit boundvar" title="">n</span>) ->
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> (<a class="constructor" title="Prelude.Nat.S" href="Prelude.Nat.html#Prelude.Nat.S">S</a> <span class="implicit boundvar" title="">n</span>)
+<span class="implicit boundvar" title="">a</span></span></dt><dd><p>Insert an element at a particular index</p>
+</dd><dt id="Data.VectType.Vect.init"><span class="name function" title="Data.VectType.Vect.init">init</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> (<a class="constructor" title="Prelude.Nat.S" href="Prelude.Nat.html#Prelude.Nat.S">S</a> <span class="implicit boundvar" title="">n</span>)
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span></span></dt><dd><p>All but the last element of the vector</p>
+</dd><dt id="Data.VectType.Vect.index"><span class="name function" title="Data.VectType.Vect.index">index</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.Fin.Fin" href="Data.Fin.html#Data.Fin.Fin">Fin</a> <span class="implicit boundvar" title="">n</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<span class="implicit boundvar" title="">a</span></span></dt><dd><p>Extract a particular element from a vector</p>
+</dd><dt id="Data.VectType.Vect.head"><span class="name function" title="Data.VectType.Vect.head">head</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> (<a class="constructor" title="Prelude.Nat.S" href="Prelude.Nat.html#Prelude.Nat.S">S</a> <span class="implicit boundvar" title="">n</span>)
+<span class="implicit boundvar" title="">a</span> ->
+<span class="implicit boundvar" title="">a</span></span></dt><dd><p>Only the first element of the vector</p>
+</dd><dt id="Data.VectType.Vect.hasAnyBy"><span class="name function" title="Data.VectType.Vect.hasAnyBy">hasAnyBy</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="documented boundvar" title="the comparison operator">p</span> : <span class="implicit boundvar" title="">a</span> ->
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a>) ->
+(<span class="documented boundvar" title="the vector to search">elems</span> : <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">m</span>
+<span class="implicit boundvar" title="">a</span>) ->
+(<span class="documented boundvar" title="what to search for">xs</span> : <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span>) ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a></span></dt><dd><p>Check if any element of xs is found in elems by a user-provided comparison</p>
+<dl><dt>p</dt><dd><p>the comparison operator</p>
+</dd><dt>elems</dt><dd><p>the vector to search</p>
+</dd><dt>xs</dt><dd><p>what to search for</p>
+</dd></dl></dd><dt id="Data.VectType.Vect.hasAny"><span class="name function" title="Data.VectType.Vect.hasAny">hasAny</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Prelude.Classes.Eq" href="Prelude.Classes.html#Prelude.Classes.Eq">Eq</a> <span class="implicit boundvar" title="">a</span> =>
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">m</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a></span></dt><dd><p>Check if any element of xs is found in elems using the default Boolean equality test</p>
+</dd><dt id="Data.VectType.Vect.fromList&#39;"><span class="name function" title="Data.VectType.Vect.fromList&#39;">fromList&#39;</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+(<span class="boundvar" title="">l</span> : <a class="type" title="Prelude.List.List" href="Prelude.List.html#Prelude.List.List">List</a> <span class="implicit boundvar" title="">a</span>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> (<a class="function" title="Prelude.List.length" href="Prelude.List.html#Prelude.List.length">length</a> <span class="boundvar" title="">l</span> <a class="function" title="Prelude.Classes.+" href="Prelude.Classes.html#Prelude.Classes.+">+</a>
+<span class="implicit boundvar" title="">n</span>)
+<span class="implicit boundvar" title="">a</span></span></dt><dd></dd><dt id="Data.VectType.Vect.fromList"><span class="name function" title="Data.VectType.Vect.fromList">fromList</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="boundvar" title="">l</span> : <a class="type" title="Prelude.List.List" href="Prelude.List.html#Prelude.List.List">List</a> <span class="implicit boundvar" title="">a</span>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> (<a class="function" title="Prelude.List.length" href="Prelude.List.html#Prelude.List.length">length</a> <span class="boundvar" title="">l</span>)
+<span class="implicit boundvar" title="">a</span></span></dt><dd><p>Convert a list to a vector.</p>
+<p>The length of the list should be statically known.</p>
+</dd><dt id="Data.VectType.Vect.foldrImpl"><span class="name function" title="Data.VectType.Vect.foldrImpl">foldrImpl</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="implicit boundvar" title="">t</span> ->
+<span class="implicit boundvar" title="">acc</span> ->
+<span class="implicit boundvar" title="">acc</span>) ->
+<span class="implicit boundvar" title="">acc</span> ->
+(<span class="implicit boundvar" title="">acc</span> ->
+<span class="implicit boundvar" title="">acc</span>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">t</span> ->
+<span class="implicit boundvar" title="">acc</span></span></dt><dd></dd><dt id="Data.VectType.Vect.foldr1"><span class="name function" title="Data.VectType.Vect.foldr1">foldr1</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="implicit boundvar" title="">t</span> ->
+<span class="implicit boundvar" title="">t</span> ->
+<span class="implicit boundvar" title="">t</span>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> (<a class="constructor" title="Prelude.Nat.S" href="Prelude.Nat.html#Prelude.Nat.S">S</a> <span class="implicit boundvar" title="">n</span>)
+<span class="implicit boundvar" title="">t</span> ->
+<span class="implicit boundvar" title="">t</span></span></dt><dd><p>Foldr without seeding the accumulator</p>
+</dd><dt id="Data.VectType.Vect.foldl1"><span class="name function" title="Data.VectType.Vect.foldl1">foldl1</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="implicit boundvar" title="">t</span> ->
+<span class="implicit boundvar" title="">t</span> ->
+<span class="implicit boundvar" title="">t</span>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> (<a class="constructor" title="Prelude.Nat.S" href="Prelude.Nat.html#Prelude.Nat.S">S</a> <span class="implicit boundvar" title="">n</span>)
+<span class="implicit boundvar" title="">t</span> ->
+<span class="implicit boundvar" title="">t</span></span></dt><dd><p>Foldl without seeding the accumulator</p>
+</dd><dt id="Data.VectType.Vect.findIndices"><span class="name function" title="Data.VectType.Vect.findIndices">findIndices</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">m</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">(</a><span class="boundvar" title="">p</span> : <a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a> <a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">**</a> <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="boundvar" title="">p</span>
+<a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a><a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">)</a></span></dt><dd><p>Find the indices of all elements that satisfy some test</p>
+</dd><dt id="Data.VectType.Vect.findIndex"><span class="name function" title="Data.VectType.Vect.findIndex">findIndex</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Maybe.Maybe" href="Prelude.Maybe.html#Prelude.Maybe.Maybe">Maybe</a> (<a class="type" title="Data.Fin.Fin" href="Data.Fin.html#Data.Fin.Fin">Fin</a> <span class="implicit boundvar" title="">n</span>)</span></dt><dd><p>Find the index of the first element of the vector that satisfies some test</p>
+</dd><dt id="Data.VectType.Vect.find"><span class="name function" title="Data.VectType.Vect.find">find</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="documented boundvar" title="the test to satisfy">p</span> : <span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a>) ->
+(<span class="boundvar" title="">xs</span> : <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span>) ->
+<a class="type" title="Prelude.Maybe.Maybe" href="Prelude.Maybe.html#Prelude.Maybe.Maybe">Maybe</a> <span class="implicit boundvar" title="">a</span></span></dt><dd><p>Find the first element of the vector that satisfies some test</p>
+<dl><dt>p</dt><dd><p>the test to satisfy</p>
+</dd></dl></dd><dt id="Data.VectType.Vect.filter"><span class="name function" title="Data.VectType.Vect.filter">filter</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">(</a><span class="boundvar" title="">p</span> : <a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a> <a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">**</a> <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="boundvar" title="">p</span>
+<span class="implicit boundvar" title="">a</span><a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">)</a></span></dt><dd><p>Find all elements of a vector that satisfy some test</p>
+</dd><dt id="Data.VectType.Vect.elemIndicesBy"><span class="name function" title="Data.VectType.Vect.elemIndicesBy">elemIndicesBy</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="implicit boundvar" title="">a</span> ->
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a>) ->
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">m</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">(</a><span class="boundvar" title="">p</span> : <a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a> <a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">**</a> <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="boundvar" title="">p</span>
+<a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a><a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">)</a></span></dt><dd></dd><dt id="Data.VectType.Vect.elemIndices"><span class="name function" title="Data.VectType.Vect.elemIndices">elemIndices</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Prelude.Classes.Eq" href="Prelude.Classes.html#Prelude.Classes.Eq">Eq</a> <span class="implicit boundvar" title="">a</span> =>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">m</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">(</a><span class="boundvar" title="">p</span> : <a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a> <a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">**</a> <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="boundvar" title="">p</span>
+<a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a><a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">)</a></span></dt><dd></dd><dt id="Data.VectType.Vect.elemIndexBy"><span class="name function" title="Data.VectType.Vect.elemIndexBy">elemIndexBy</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="implicit boundvar" title="">a</span> ->
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a>) ->
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">m</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Maybe.Maybe" href="Prelude.Maybe.html#Prelude.Maybe.Maybe">Maybe</a> (<a class="type" title="Data.Fin.Fin" href="Data.Fin.html#Data.Fin.Fin">Fin</a> <span class="implicit boundvar" title="">m</span>)</span></dt><dd></dd><dt id="Data.VectType.Vect.elemIndex"><span class="name function" title="Data.VectType.Vect.elemIndex">elemIndex</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Prelude.Classes.Eq" href="Prelude.Classes.html#Prelude.Classes.Eq">Eq</a> <span class="implicit boundvar" title="">a</span> =>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">m</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Maybe.Maybe" href="Prelude.Maybe.html#Prelude.Maybe.Maybe">Maybe</a> (<a class="type" title="Data.Fin.Fin" href="Data.Fin.html#Data.Fin.Fin">Fin</a> <span class="implicit boundvar" title="">m</span>)</span></dt><dd></dd><dt id="Data.VectType.Vect.elemBy"><span class="name function" title="Data.VectType.Vect.elemBy">elemBy</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="documented boundvar" title="the equality test">p</span> : <span class="implicit boundvar" title="">a</span> ->
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a>) ->
+(<span class="documented boundvar" title="the item to search for">e</span> : <span class="implicit boundvar" title="">a</span>) ->
+(<span class="documented boundvar" title="the vector to search in">xs</span> : <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span>) ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a></span></dt><dd><p>Search for an item using a user-provided test</p>
+<dl><dt>p</dt><dd><p>the equality test</p>
+</dd><dt>e</dt><dd><p>the item to search for</p>
+</dd><dt>xs</dt><dd><p>the vector to search in</p>
+</dd></dl></dd><dt id="Data.VectType.Vect.elem"><span class="name function" title="Data.VectType.Vect.elem">elem</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Prelude.Classes.Eq" href="Prelude.Classes.html#Prelude.Classes.Eq">Eq</a> <span class="implicit boundvar" title="">a</span> =>
+(<span class="documented boundvar" title="what to search for">x</span> : <span class="implicit boundvar" title="">a</span>) ->
+(<span class="documented boundvar" title="where to search">xs</span> : <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span>) ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a></span></dt><dd><p>Use the default Boolean equality on elements to search for an item</p>
+<dl><dt>x</dt><dd><p>what to search for</p>
+</dd><dt>xs</dt><dd><p>where to search</p>
+</dd></dl></dd><dt id="Data.VectType.Vect.dropWhile"><span class="name function" title="Data.VectType.Vect.dropWhile">dropWhile</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="documented boundvar" title="the predicate">p</span> : <span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">(</a><span class="boundvar" title="">q</span> : <a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a> <a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">**</a> <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="boundvar" title="">q</span>
+<span class="implicit boundvar" title="">a</span><a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">)</a></span></dt><dd><p>Remove the longest prefix of a Vect such that all removed elements satisfy some<br />
+Boolean predicate.</p>
+<dl><dt>p</dt><dd><p>the predicate</p>
+</dd></dl></dd><dt id="Data.VectType.Vect.drop"><span class="name function" title="Data.VectType.Vect.drop">drop</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="documented boundvar" title="the number of elements to remove">n</span> : <a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> (<span class="documented boundvar" title="the number of elements to remove">n</span> <a class="function" title="Prelude.Classes.+" href="Prelude.Classes.html#Prelude.Classes.+">+</a>
+<span class="implicit boundvar" title="">m</span>)
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">m</span>
+<span class="implicit boundvar" title="">a</span></span></dt><dd><p>Remove the first n elements of a Vect</p>
+<dl><dt>n</dt><dd><p>the number of elements to remove</p>
+</dd></dl></dd><dt id="Data.VectType.Vect.diag"><span class="name function" title="Data.VectType.Vect.diag">diag</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+(<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span></span></dt><dd></dd><dt id="Data.VectType.Vect.deleteBy"><span class="name function" title="Data.VectType.Vect.deleteBy">deleteBy</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="implicit boundvar" title="">a</span> ->
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Prelude.Bool.Bool" href="Prelude.Bool.html#Prelude.Bool.Bool">Bool</a>) ->
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">(</a><span class="boundvar" title="">p</span> : <a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a> <a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">**</a> <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="boundvar" title="">p</span>
+<span class="implicit boundvar" title="">a</span><a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">)</a></span></dt><dd></dd><dt id="Data.VectType.Vect.deleteAt"><span class="name function" title="Data.VectType.Vect.deleteAt">deleteAt</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.Fin.Fin" href="Data.Fin.html#Data.Fin.Fin">Fin</a> (<a class="constructor" title="Prelude.Nat.S" href="Prelude.Nat.html#Prelude.Nat.S">S</a> <span class="implicit boundvar" title="">n</span>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> (<a class="constructor" title="Prelude.Nat.S" href="Prelude.Nat.html#Prelude.Nat.S">S</a> <span class="implicit boundvar" title="">n</span>)
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span></span></dt><dd><p>Construct a new vector consisting of all but the indicated element</p>
+</dd><dt id="Data.VectType.Vect.delete"><span class="name function" title="Data.VectType.Vect.delete">delete</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Prelude.Classes.Eq" href="Prelude.Classes.html#Prelude.Classes.Eq">Eq</a> <span class="implicit boundvar" title="">a</span> =>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">(</a><span class="boundvar" title="">p</span> : <a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a> <a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">**</a> <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="boundvar" title="">p</span>
+<span class="implicit boundvar" title="">a</span><a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">)</a></span></dt><dd></dd><dt id="Data.VectType.Vect.concat"><span class="name function" title="Data.VectType.Vect.concat">concat</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">m</span>
+(<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> (<span class="implicit boundvar" title="">m</span> <a class="function" title="Prelude.Classes.*" href="Prelude.Classes.html#Prelude.Classes.*">*</a>
+<span class="implicit boundvar" title="">n</span>)
+<span class="implicit boundvar" title="">a</span></span></dt><dd><p>Flatten a vector of equal-length vectors</p>
+</dd><dt id="Data.VectType.Vect.catMaybes"><span class="name function" title="Data.VectType.Vect.catMaybes">catMaybes</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+(<a class="type" title="Prelude.Maybe.Maybe" href="Prelude.Maybe.html#Prelude.Maybe.Maybe">Maybe</a> <span class="implicit boundvar" title="">a</span>) ->
+<a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">(</a><span class="boundvar" title="">p</span> : <a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a> <a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">**</a> <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="boundvar" title="">p</span>
+<span class="implicit boundvar" title="">a</span><a class="type" title="Builtins.Sigma" href="Builtins.html#Builtins.Sigma">)</a></span></dt><dd></dd><dt id="Data.VectType.Vect.Vect"><span class="word">data&nbsp;</span><span class="name type" title="Data.VectType.Vect.Vect">Vect</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Prelude.Nat.Nat" href="Prelude.Nat.html#Prelude.Nat.Nat">Nat</a> ->
+<span class="type" title="Type">Type</span> ->
+<span class="type" title="Type">Type</span></span></dt><dd><dl class="decls"><dt id="Data.VectType.Vect.Nil"><span class="name constructor" title="Data.VectType.Vect.Nil">Nil</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="data" title="0">0</span>
+<span class="implicit boundvar" title="">a</span></span></dt><dd></dd><dt id="Data.VectType.Vect.::"><span class="name constructor" title="Data.VectType.Vect.::">(::)</span><span class="word">&nbsp;:&nbsp;</span><span class="signature">(<span class="boundvar" title="">x</span> : <span class="implicit boundvar" title="">a</span>) ->
+(<span class="boundvar" title="">xs</span> : <a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span>) ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> (<a class="constructor" title="Prelude.Nat.S" href="Prelude.Nat.html#Prelude.Nat.S">S</a> <span class="implicit boundvar" title="">n</span>)
+<span class="implicit boundvar" title="">a</span></span></dt><dd><dl><dt class="fixity">Fixity</dt><dd class="fixity" title="infixr 7">Left associative, precedence 7</dd></dl></dd></dl></dd><dt id="Data.VectType.Vect.++"><span class="name function" title="Data.VectType.Vect.++">(++)</span><span class="word">&nbsp;:&nbsp;</span><span class="signature"><a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">m</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> <span class="implicit boundvar" title="">n</span>
+<span class="implicit boundvar" title="">a</span> ->
+<a class="type" title="Data.VectType.Vect.Vect" href="Data.VectType.Vect.html#Data.VectType.Vect.Vect">Vect</a> (<span class="implicit boundvar" title="">m</span> <a class="function" title="Prelude.Classes.+" href="Prelude.Classes.html#Prelude.Classes.+">+</a>
+<span class="implicit boundvar" title="">n</span>)
+<span class="implicit boundvar" title="">a</span></span></dt><dd><p>Append two vectors</p>
+<dl><dt class="fixity">Fixity</dt><dd class="fixity" title="infixr 7">Left associative, precedence 7</dd></dl></dd></dl></div></div><footer>Produced by IdrisDoc version 1.0</footer></body></html>
