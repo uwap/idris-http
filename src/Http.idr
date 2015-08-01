@@ -6,7 +6,9 @@ import Network.Socket
 
 %access public
 
-sendRequest : Request -> IO (Either SocketError String)
+data RawResponse = MkRawResponse String
+
+sendRequest : Request -> IO (Either SocketError RawResponse)
 sendRequest req = do
   print (resolveRequest req)
   case !(socket AF_INET Stream 0) of
@@ -19,5 +21,5 @@ sendRequest req = do
             Right _  =>
               case !(recv sock 65536) of
                 Left err       => return (Left err)
-                Right (str, _) => return (Right str)
+                Right (str, _) => return (Right (MkRawResponse str))
         err => return (Left err)
