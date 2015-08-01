@@ -11,12 +11,10 @@ cd idris-http
 idris --install http.ipkg
 ```
 
-## To test (maybe)
+## To test
+
+Be in `src/` then run:
 
 ```
-Idris> :l src/Http.i
-*src/Http> :let a = MkURIAuth Nothing Nothing "da.gd" 80
-*src/Http> :let b = MkURI "http" a "/ip" "" ""
-*src/Http> :let c = MkRequest GET b []
-*src/Http> :x sendRequest c
+idris -p http -p contrib HttpTest.idr -o test && ./test
 ```
