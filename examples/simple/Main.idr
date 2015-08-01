@@ -1,6 +1,7 @@
 import Network.Socket
 import Http
 import Http.Uri
+import Http.Request
 
 main : IO ()
 main = do
