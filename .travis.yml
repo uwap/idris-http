@@ -1,0 +1,42 @@
+language: haskell
+
+env:
+  - GHCVER=7.10.1
+
+before_install:
+  - |
+    if [ $GHCVER = `ghc --numeric-version` ]; then
+      travis/cabal-apt-install --enable-tests $MODE
+      export CABAL=cabal
+    else
+      travis_retry sudo add-apt-repository -y ppa:hvr/ghc
+      travis_retry sudo apt-get update
+      travis_retry sudo apt-get install cabal-install-1.22 ghc-$GHCVER happy
+      export CABAL=cabal-1.22
+      export PATH=/opt/ghc/$GHCVER/bin:$PATH
+    fi
+  - $CABAL update
+
+  # Update happy when building with GHC head
+  - |
+    if [ $GHCVER = "head" ] || [ $GHCVER = "7.8.4" ] || [ $GHCVER = "7.10.1" ]; then
+      $CABAL install --constraint=transformers\ installed happy alex
+      export PATH=$HOME/.cabal/bin:$PATH
+    fi
+
+install:
+  - $CABAL install idris
+
+before_script:
+  - export PATH=$PATH:~/.cabal/bin
+
+script:
+  - idris --build http.ipkg
+
+notifications:
+  irc:
+    channels:
+      - "irc.freenode.org#dagd"
+    skip_join: false
+    template:
+      - "\x0313idris-http\x0f/\x0306%{branch}\x0f \x0314%{commit}\x0f %{message} \x0302\x1f%{build_url}\x0f"
