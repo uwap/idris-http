@@ -1,0 +1,5 @@
+package simple
+
+main = Main
+executable = simple
+opts = "-p http -p contrib --total"
