@@ -6,11 +6,12 @@ import Http.Uri
 %access public
 
 ||| The HTTP Method which is either POST or GET
-data Method = POST | GET
+data Method = POST | GET | HEAD
 
 instance Show Method where
   show POST = "POST"
   show GET  = "GET"
+  show HEAD = "HEAD"
 
 ||| A String-alias for Hosts.
 Host : Type
