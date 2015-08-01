@@ -25,7 +25,7 @@ before_install:
     fi
 
 install:
-  - $CABAL install idris
+  - travis_wait $CABAL install idris
 
 before_script:
   - export PATH=$PATH:~/.cabal/bin
