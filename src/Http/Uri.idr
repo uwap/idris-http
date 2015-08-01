@@ -23,6 +23,6 @@ uriToString u =
   where
     authStrMaybe : URIAuth -> Maybe String
     authStrMaybe u' =
-      liftA2 (++) (map (++ ":") (uriUsername u')) (map (++ "@") (uriUsername u'))
+      !(uriUsername u') ++ ":" ++ !(uriUsername u') ++ "@"
 
     authStr u = fromMaybe "" (authStrMaybe u)

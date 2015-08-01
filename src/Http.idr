@@ -55,15 +55,6 @@ encodeQuery ((k,v) :: []) = urlEncode k ++ "=" ++ urlEncode v
 encodeQuery ((k,v) :: xs) =
   urlEncode k ++ "=" ++ urlEncode v ++ "&" ++ encodeQuery xs
 
-||| The URI of the request.
-||| It is the request path concatinated with the query string
-||| delivered by encodeQuery.
-|||
-||| @ req The request to get the URI from
---requestUri : (req : Request) -> String
---requestUri req = path req ++ "?" ++ encodeQuery (query req)
-                -- TODO: Send no question mark when query is empty
-
 ||| This is the first line of a Full-Request defined in RFC1945 Section 5.1.
 |||
 ||| @ req The request to get the request line from
