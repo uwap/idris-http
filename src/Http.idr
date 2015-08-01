@@ -4,6 +4,8 @@ import Http.Uri
 import Data.Vect
 import Network.Socket
 
+%access public
+
 ||| The HTTP Method which is either POST or GET
 data Method = POST | GET
 
@@ -59,17 +61,28 @@ encodeQuery ((k,v) :: xs) =
   urlEncode k ++ "=" ++ urlEncode v ++ "&" ++ encodeQuery xs
 
 ||| This is the first line of a Full-Request defined in RFC1945 Section 5.1.
+||| This does not end with a CRLF
 |||
-||| @ req The request to get the request line from
+||| @ req The request to get the request line from.
+private
 requestLine : (req : Request) -> String
 requestLine req =
   show (method req) ++ " " ++ uriToString (uri req) ++ " " ++ httpVersion
 
+||| This returns a String containing all headers
+||| which are seperated by CRLF. This also
+||| prepends a CRLF so it can be directly appended to the
+||| request line.
+|||
+||| @ req The request to get the header string from.
+private
+requestHeaders : (req : Request) -> String
+requestHeaders req =
+  foldl (\x, (k,v) => x ++ "\r\n" ++ k ++ ": " ++ v) "" (headers req)
+
 resolveRequest : Request -> String
 resolveRequest req =
-  requestLine req ++
-  foldr (\(y, z), x => x ++ "\r\n" ++ y ++ ": " ++ z) "" (headers req) ++
-  "\r\n\r\n"
+  requestLine req ++ requestHeaders req ++ "\r\n\r\n"
 
 sendRequest : Request -> IO (Either SocketError String)
 sendRequest req = do
