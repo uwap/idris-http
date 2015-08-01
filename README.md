@@ -1,3 +1,5 @@
+![Travis Status](https://travis-ci.org/uwap/idris-http.svg "Travis Build Status")
+
 # idris-http
 An HTTP library for idris 0.9.18.1.
 
@@ -11,10 +13,19 @@ cd idris-http
 idris --install http.ipkg
 ```
 
-## To test
+## Running/Testing an example
 
-Be in `src/` then run:
+First install http by typing
 
 ```
-idris -p http -p contrib HttpTest.idr -o test && ./test
+idris --install http.ipkg
+```
+
+Then move into the directory of the example you want to test.
+For example move into examples/simple/ and then build and run it:
+
+```
+cd examples/simple/
+idris --build simple.ipkg
+./simple
 ```
