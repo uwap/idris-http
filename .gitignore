@@ -1,3 +1,4 @@
 *.ibc
 *.o
-/src/test
+examples/simple/simple
+http_doc/
