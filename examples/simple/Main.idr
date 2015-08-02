@@ -13,9 +13,9 @@ toRequest : Method -> String -> Int -> String -> Request
 toRequest method host port path = MkRequest method (uri host port path) [] [("Host", host)]
 
 processArgs : List String -> Maybe Request
-processArgs (_::method::host::path::_) = Just (toRequest (cast method) host 80 path)
 processArgs (_::method::host::port::path::_) =
   Just (toRequest (cast method) host (cast port) path)
+processArgs (_::method::host::path::_) = Just (toRequest (cast method) host 80 path)
 processArgs _ = Nothing
 
 partial
