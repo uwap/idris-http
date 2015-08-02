@@ -20,23 +20,24 @@ processArgs _ = Nothing
 
 partial
 main : IO ()
-main = do
-  args <- getArgs
-  case processArgs args of
-    Just req => do
-      res <- sendRequest req
-      case res of
+main =
+  case processArgs !getArgs of
+    Just req =>
+      case !(sendRequest req) of
         Left err => print err >>= \_ => putStr "\n"
         Right s => do
-          putStrLn "Response status:"
-          print (responseStatus s)
-          putStr "\n\n"
+          case parseResponse s of
+            Nothing => print "Error parsing response"
+            Just res => do
+              putStrLn "Response status:"
+              print (responseStatus res)
+              putStr "\n\n"
 
-          putStrLn "Headers Received:"
-          traverse (\x => print x >>= \_ => putStr "\n") (responseHeaders s)
-          putStr "\n\n"
+              putStrLn "Headers Received:"
+              traverse (\x => do print x; putStr "\n") (responseHeaders res)
+              putStr "\n\n"
 
-          putStrLn "Body:"
-          print (responseBody s)
-          putStr "\n\n"
+              -- putStrLn "Body:"
+              -- print (responseBody s)
+              -- putStr "\n\n"
     Nothing => putStrLn "Usage: ./simple method host [port] path"
