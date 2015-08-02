@@ -33,6 +33,7 @@ splitDoubleCRLF s =
   case splitOn' "\r\n\r\n" s of
     (x :: [])      => (x, "")
     (x :: y :: []) => (x, y)
+    (x :: y :: z)  => (x, y ++ concat (intersperse "\r\n" z))
     _              => ("", "")
 
 partial   -- TODO: Nuke this annotation after https://github.com/relrod/idris-split/issues/1
@@ -41,6 +42,7 @@ splitColon s =
   case splitOn' ":" s of
     (x :: [])      => (x, "")
     (x :: y :: []) => (x, y)
+    (x :: y :: z)  => (x, y ++ concat (intersperse ":" z))
     _              => ("", "")
 
 -- TODO: uwap please make this better
