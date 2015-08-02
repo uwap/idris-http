@@ -2,7 +2,6 @@ module Http.Response
 
 import Data.Vect
 import Http.RawResponse
-import List.Split
 
 %access public
 
@@ -16,6 +15,11 @@ instance Show ResponseStatus where
   show (MkResponseStatus ver code cmt) =
     "MkResponseStatus " ++ ver ++ " " ++ show code ++ " " ++ cmt
 
+record Response where
+  constructor MkResponse
+  responseStatus : ResponseStatus
+  responseHeader : Vect n (String, String)
+
 responseStatus : RawResponse String -> Maybe ResponseStatus
 responseStatus (MkRawResponse r) with (lines r)
   | (x :: _) with (words x)
@@ -27,33 +31,25 @@ responseStatus (MkRawResponse r) with (lines r)
                 | _ = Nothing
   | [] = Nothing
 
-partial   -- TODO: Nuke this annotation after https://github.com/relrod/idris-split/issues/1
-splitDoubleCRLF : String -> (String, String)
-splitDoubleCRLF s =
-  case splitOn' "\r\n\r\n" s of
-    (x :: [])      => (x, "")
-    (x :: y :: []) => (x, y)
-    (x :: y :: z)  => (x, y ++ concat (intersperse "\r\n" z))
-    _              => ("", "")
-
-partial   -- TODO: Nuke this annotation after https://github.com/relrod/idris-split/issues/1
-splitColon : String -> (String, String)
-splitColon s =
-  case splitOn' ":" s of
-    (x :: [])      => (x, "")
-    (x :: y :: []) => (x, y)
-    (x :: y :: z)  => (x, y ++ concat (intersperse ":" z))
-    _              => ("", "")
-
--- TODO: uwap please make this better
-partial   -- TODO: Nuke this annotation after https://github.com/relrod/idris-split/issues/1
-responseHeaders : RawResponse String -> List (String, String)
-responseHeaders (MkRawResponse r) =
-  let headersRaw = fst $ splitDoubleCRLF r
-      headerLines = drop 1 . lines $ headersRaw
-      headers = map splitColon headerLines
-  in headers
-
-partial   -- TODO: Nuke this annotation after https://github.com/relrod/idris-split/issues/1
-responseBody : RawResponse String -> String
-responseBody (MkRawResponse r) = snd . splitDoubleCRLF $ r
+||| Parses one header line as defined in RFC7230 Section 3.2.
+parseHeaderField : String -> Maybe (String, String)
+parseHeaderField line with (split (==':') line)
+  | (k :: v :: []) = Just (triml k, trimr v)
+  where
+    triml = pack . dropWhile (== ' ') . unpack
+    trimr = reverse . triml . reverse
+  | _ = Nothing
+   
+||| Parse a response message as defined in RFC7230 Section 3.
+|||
+||| @ rres A raw HTTP response
+parseResponse : (rres : RawResponse String) -> Maybe Response
+parseResponse (MkRawResponse str) with (lines str)
+  | [] = Nothing
+  | (x :: xs) = Just $ MkResponse !(responseStatus (MkRawResponse x)) (fromList !(parseLines xs))
+  where
+    parseLines : List String -> Maybe (List (String, String))
+    parseLines (x :: xs) = Just $ !(parseLines xs) ++ pure !(parseHeaderField x)
+    parseLines ("" :: xs) = Just [] -- parseBody (unlines xs)
+                    -- TODO: Implement parseBody
+    parseLines [] = Just []
