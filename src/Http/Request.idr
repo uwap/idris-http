@@ -65,26 +65,28 @@ encodeQuery ((k,v) :: []) = urlEncode k ++ "=" ++ urlEncode v
 encodeQuery ((k,v) :: xs) =
   urlEncode k ++ "=" ++ urlEncode v ++ "&" ++ encodeQuery xs
 
-||| This is the first line of a Full-Request defined in RFC1945 Section 5.1.
-||| This does not end with a CRLF
+||| This is the first line of a request line defined in RFC7230 Section 3.1.1.
 |||
 ||| @ req The request to get the request line from.
 private
 requestLine : (req : Request) -> String
 requestLine req =
-  show (method req) ++ " " ++ uriToString (uri req) ++ " " ++ httpVersion
+  show (method req) ++ " " ++ uriToString (uri req) ++ " " ++ httpVersion ++ "\r\n"
 
-||| This returns a String containing all headers
-||| which are seperated by CRLF. This also
-||| prepends a CRLF so it can be directly appended to the
-||| request line.
+||| This is a CRLF seperated list of header-fields as defined in RFC7230 Section 3.2.
 |||
 ||| @ req The request to get the header string from.
 private
-requestHeaders : (req : Request) -> String
-requestHeaders req =
-  foldl (\x, (k,v) => x ++ "\r\n" ++ k ++ ": " ++ v) "" (headers req)
+headerFields : (req : Request) -> String
+headerFields req = fields (headers req)
+  where
+    fields [] = ""
+    fields ((k,v) :: xs) = k ++ ": " ++ v ++ "\r\n"
 
-resolveRequest : Request -> String
+||| Convert a request into a string.
+||| This follows RFC7230's definition of an HTTP-Message defined in Section 3.
+|||
+||| @ req The request to convert.
+resolveRequest : (req : Request) -> String
 resolveRequest req =
-  requestLine req ++ requestHeaders req ++ "\r\n\r\n"
+  requestLine req ++ requestHeaders req ++ "\r\n"
