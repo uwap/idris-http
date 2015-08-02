@@ -34,7 +34,12 @@ parseResponseStatus (MkRawResponse r) with (lines r)
 ||| Parses one header line as defined in RFC7230 Section 3.2.
 parseHeaderField : String -> Maybe (String, String)
 parseHeaderField line with (split (==':') line)
-  | (k :: v :: []) = Just (k, trim v)
+  | (k :: v) = Just (k, trim $ join ":" v)
+  where
+    join : String -> List String -> String
+    join p [] = ""
+    join p (x :: []) = x
+    join p (x :: xs) = x ++ p ++ join p xs
   | _ = Nothing
    
 ||| Parse a response message as defined in RFC7230 Section 3.
@@ -46,7 +51,7 @@ parseResponse (MkRawResponse str) with (lines str)
   | (x :: xs) = Just $ MkResponse !(parseResponseStatus (MkRawResponse x)) (fromList !(parseLines xs))
   where
     parseLines : List String -> Maybe (List (String, String))
-    parseLines (x :: xs) = Just $ !(parseLines xs) ++ pure !(parseHeaderField x)
     parseLines ("" :: xs) = Just [] -- parseBody (unlines xs)
-                    -- TODO: Implement parseBody
+                                  -- TODO: Implement parseBody
+    parseLines (x :: xs) = Just $ !(parseLines xs) ++ pure !(parseHeaderField x)
     parseLines [] = Just []
