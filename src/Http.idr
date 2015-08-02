@@ -3,6 +3,7 @@ module Http
 import Http.Uri
 import Http.RawResponse
 import Http.Request
+import Http.Response
 import Network.Socket
 
 %access public
@@ -24,7 +25,7 @@ sendRequest req = do
           err => return (Left err)
   where
     host : String
-    host = uriHost . uriAuthority . uri $ req
+    host = uriHost . uriAuth . uri $ req
 
     port : Int
-    port = uriPort . uriAuthority . uri $ req
+    port = uriPort . uriAuth . uri $ req

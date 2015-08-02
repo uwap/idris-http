@@ -12,7 +12,7 @@ record URIAuth where
 record URI where
   constructor MkURI
   uriScheme : String
-  uriAuthority : URIAuth
+  uriAuth : URIAuth
   uriPath : String
   uriQuery : Vect q (String, String)
   uriFragment : String
@@ -37,8 +37,8 @@ encodeQuery ((k,v) :: xs) =
 
 uriToString : URI -> String
 uriToString u =
-  uriScheme u ++ "://" ++ authStr (uriAuthority u) ++
-  (uriHost . uriAuthority $ u) ++ ":" ++ show (uriPort . uriAuthority $ u) ++
+  uriScheme u ++ "://" ++ authStr (uriAuth u) ++
+  (uriHost . uriAuth $ u) ++ ":" ++ show (uriPort . uriAuth $ u) ++
   uriPath u ++ "?" ++ encodeQuery (uriQuery u) ++ uriFragment u
   where
     authPassword : URIAuth -> String
