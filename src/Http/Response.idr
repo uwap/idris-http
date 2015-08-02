@@ -13,7 +13,7 @@ record ResponseStatus where
 
 instance Show ResponseStatus where
   show (MkResponseStatus ver code cmt) =
-    "ResponseStatus " ++ ver ++ " " ++ code ++ " " ++ cmt
+    "MkResponseStatus " ++ ver ++ " " ++ code ++ " " ++ cmt
 
 responseStatus : RawResponse String -> Maybe ResponseStatus
 responseStatus (MkRawResponse r) with (lines r)
