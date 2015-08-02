@@ -7,7 +7,7 @@ import Network.Socket
 import System
 
 uri : String -> Int -> String -> URI
-uri host port path = MkURI "http" (MkURIAuth Nothing Nothing host port) path "" ""
+uri host port path = MkURI "http" (MkURIAuth Nothing Nothing host port) path [] ""
 
 toRequest : Method -> String -> Int -> String -> Request
 toRequest method host port path = MkRequest method (uri host port path) [] [("Host", host)]
