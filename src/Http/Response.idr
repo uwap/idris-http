@@ -40,7 +40,7 @@ splitDoubleCRLF s = splitDoubleCRLF' (the (List Char) List.Nil) (unpack s)
 responseHeaders : RawResponse String -> List (List String)
 responseHeaders (MkRawResponse r) =
   let headersRaw = fst $ splitDoubleCRLF r
-      headerLines = lines headersRaw
+      headerLines = drop 1 . lines $ headersRaw
       headers = map (map trim . split (== ':')) headerLines
   in headers
 
