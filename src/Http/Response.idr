@@ -17,8 +17,9 @@ instance Show ResponseStatus where
 
 responseStatus : RawResponse String -> Maybe ResponseStatus
 responseStatus (MkRawResponse r) with (lines r)
-  | (x :: _) with (split (== ' ') x)
-                | (ver :: code :: cmt :: _) = Just $
-                    MkResponseStatus ver code cmt
+  | (x :: _) with (words x)
+                | (_ :: _ :: []) = Nothing
+                | (ver :: code :: cmt) = Just $
+                    MkResponseStatus ver code (unwords cmt)
                 | _ = Nothing
   | [] = Nothing
