@@ -57,23 +57,9 @@ instance VerifiedMonad RawResponse where
   monadAssociativity (MkRawResponse _) _ _ = Refl
 
 instance VerifiedSemigroup a => VerifiedSemigroup (RawResponse a) where
-  semigroupOpIsAssociative (MkRawResponse a) (MkRawResponse b) (MkRawResponse c) = ?semiproof
+  semigroupOpIsAssociative (MkRawResponse a) (MkRawResponse b) (MkRawResponse c) =
+                                          rewrite semigroupOpIsAssociative a b c in Refl
 
 instance VerifiedMonoid a => VerifiedMonoid (RawResponse a) where
-  monoidNeutralIsNeutralL (MkRawResponse a) = ?monoidproof1
-  monoidNeutralIsNeutralR (MkRawResponse a) = ?monoidproof2
-
-semiproof = proof
-  intros
-  rewrite (semigroupOpIsAssociative a b c)
-  trivial
-
-monoidproof1 = proof
-  intros
-  rewrite (monoidNeutralIsNeutralL a)
-  trivial
-
-monoidproof2 = proof
-  intros
-  rewrite (monoidNeutralIsNeutralR a)
-  trivial
+  monoidNeutralIsNeutralL (MkRawResponse a) = rewrite monoidNeutralIsNeutralL a in Refl
+  monoidNeutralIsNeutralR (MkRawResponse a) = rewrite monoidNeutralIsNeutralR a in Refl
