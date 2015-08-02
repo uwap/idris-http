@@ -14,3 +14,8 @@ instance Applicative RawResponse where
 
 instance Monad RawResponse where
   (MkRawResponse a) >>= f = f a
+
+instance Cast a (RawResponse a) where
+  cast = pure
+instance Cast (RawResponse a) a where
+  cast (MkRawResponse a) = a
