@@ -29,3 +29,10 @@ sendRequest req = do
 
     port : Int
     port = uriPort . uriAuth . uri $ req
+
+simpleHttp : Host -> Port -> (path : String) -> IO (Maybe Response)
+simpleHttp host port path = do
+  repl <- sendRequest (MkRequest GET (MkURI "http" (MkURIAuth Nothing Nothing host port) path [] "") [] [])
+  return $ case repl of
+       Right r => parseResponse r
+       Left _ => Nothing
