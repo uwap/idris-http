@@ -34,10 +34,7 @@ responseStatus (MkRawResponse r) with (lines r)
 ||| Parses one header line as defined in RFC7230 Section 3.2.
 parseHeaderField : String -> Maybe (String, String)
 parseHeaderField line with (split (==':') line)
-  | (k :: v :: []) = Just (triml k, trimr v)
-  where
-    triml = pack . dropWhile (== ' ') . unpack
-    trimr = reverse . triml . reverse
+  | (k :: v :: []) = Just (k, trim v)
   | _ = Nothing
    
 ||| Parse a response message as defined in RFC7230 Section 3.
