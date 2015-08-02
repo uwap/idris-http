@@ -1,29 +1,14 @@
 module Http
 
 import Http.Uri
+import Http.RawResponse
 import Http.Request
 import Network.Socket
 
 %access public
 
-data RawResponse a = MkRawResponse a
-
-instance Show a => Show (RawResponse a) where
-  show (MkRawResponse a) = show a
-
-instance Functor RawResponse where
-  map f (MkRawResponse a) = MkRawResponse (f a)
-
-instance Applicative RawResponse where
-  pure = MkRawResponse
-  (MkRawResponse f) <*> (MkRawResponse a) = MkRawResponse (f a)
-
-instance Monad RawResponse where
-  (MkRawResponse a) >>= f = f a
-
 sendRequest : Request -> IO (Either SocketError (RawResponse String))
 sendRequest req = do
-    print (resolveRequest req)
     case !(socket AF_INET Stream 0) of
       Left err   => return (Left err)
       Right sock =>
