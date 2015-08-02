@@ -20,8 +20,8 @@ record Response where
   responseStatus : ResponseStatus
   responseHeaders : Vect n (String, String)
 
-responseStatus : RawResponse String -> Maybe ResponseStatus
-responseStatus (MkRawResponse r) with (lines r)
+parseResponseStatus : RawResponse String -> Maybe ResponseStatus
+parseResponseStatus (MkRawResponse r) with (lines r)
   | (x :: _) with (words x)
                 | (_ :: _ :: []) = Nothing
                 | (ver :: code :: cmt) with (the Int (cast code))
@@ -43,7 +43,7 @@ parseHeaderField line with (split (==':') line)
 parseResponse : (rres : RawResponse String) -> Maybe Response
 parseResponse (MkRawResponse str) with (lines str)
   | [] = Nothing
-  | (x :: xs) = Just $ MkResponse !(responseStatus (MkRawResponse x)) (fromList !(parseLines xs))
+  | (x :: xs) = Just $ MkResponse !(parseResponseStatus (MkRawResponse x)) (fromList !(parseLines xs))
   where
     parseLines : List String -> Maybe (List (String, String))
     parseLines (x :: xs) = Just $ !(parseLines xs) ++ pure !(parseHeaderField x)
