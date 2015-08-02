@@ -32,6 +32,7 @@ before_script:
 
 script:
   - idris --build http.ipkg
+  - pushd examples/simple; idris --build simple.ipkg; popd
 
 notifications:
   irc:
