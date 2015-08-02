@@ -27,5 +27,16 @@ main = do
       res <- sendRequest req
       case res of
         Left err => print err >>= \_ => putStr "\n"
-        Right s => print (responseStatus s) >>= \_ => putStr "\n"
+        Right s => do
+          putStrLn "Response status:"
+          print (responseStatus s)
+          putStr "\n\n"
+
+          putStrLn "Headers Received:"
+          traverse (\x => print x >>= \_ => putStr "\n") (responseHeaders s)
+          putStr "\n\n"
+
+          putStrLn "Body:"
+          print (responseBody s)
+          putStr "\n\n"
     Nothing => putStrLn "Usage: ./simple method host [port] path"
