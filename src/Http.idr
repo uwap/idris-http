@@ -9,6 +9,7 @@ import Network.Socket
 
 sendRequest : Request -> IO (Either SocketError (RawResponse String))
 sendRequest req = do
+    --print (resolveRequest req)
     case !(socket AF_INET Stream 0) of
       Left err   => return (Left err)
       Right sock =>

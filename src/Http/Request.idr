@@ -13,6 +13,11 @@ instance Show Method where
   show GET  = "GET"
   show HEAD = "HEAD"
 
+instance Cast String Method where
+  cast "POST" = POST
+  cast "HEAD" = HEAD
+  cast _      = GET
+
 ||| A String-alias for Hosts.
 Host : Type
 Host = String
