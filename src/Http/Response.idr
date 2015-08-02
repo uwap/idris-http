@@ -18,7 +18,7 @@ instance Show ResponseStatus where
 record Response where
   constructor MkResponse
   responseStatus : ResponseStatus
-  responseHeader : Vect n (String, String)
+  responseHeaders : Vect n (String, String)
 
 responseStatus : RawResponse String -> Maybe ResponseStatus
 responseStatus (MkRawResponse r) with (lines r)
