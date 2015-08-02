@@ -2,4 +2,4 @@ package http
 
 modules   = Http, Http.Uri, Http.RawResponse, Http.Request, Http.Response
 sourcedir = src
-opts      = "-p contrib --total"
+opts      = "-p contrib -p split --total"

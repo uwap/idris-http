@@ -2,6 +2,7 @@ module Http.Response
 
 import Data.Vect
 import Http.RawResponse
+import List.Split
 
 %access public
 
@@ -26,24 +27,24 @@ responseStatus (MkRawResponse r) with (lines r)
                 | _ = Nothing
   | [] = Nothing
 
-||| Idris doesn't seem to yet have a port of Haskell's split package :-(.
-||| As such, doing infix-substring splits are a bit evil. Here we just hardcode
-||| the case we're after (\r\n).
+partial   -- TODO: Nuke this annotation after https://github.com/relrod/idris-split/issues/1
 splitDoubleCRLF : String -> (String, String)
-splitDoubleCRLF s = splitDoubleCRLF' (the (List Char) List.Nil) (unpack s)
-  where
-    splitDoubleCRLF' consumed ('\r'::'\n'::'\r'::'\n'::rest) = (pack consumed, pack rest)
-    splitDoubleCRLF' consumed (l::rest) = splitDoubleCRLF' (consumed ++ [l]) rest
-    splitDoubleCRLF' consumed [] = (pack consumed, "")
+splitDoubleCRLF s =
+  case splitOn' "\r\n\r\n" s of
+    (x :: [])      => (x, "")
+    (x :: y :: []) => (x, y)
+    _              => ("", "")
 
+partial   -- TODO: Nuke this annotation after https://github.com/relrod/idris-split/issues/1
 splitColon : String -> (String, String)
-splitColon s = splitColon' (the (List Char) List.Nil) (unpack s)
-  where
-    splitColon' consumed (':'::rest) = (trim (pack consumed), trim (pack rest))
-    splitColon' consumed (l::rest) = splitColon' (consumed ++ [l]) rest
-    splitColon' consumed [] = (pack consumed, "")
+splitColon s =
+  case splitOn' ":" s of
+    (x :: [])      => (x, "")
+    (x :: y :: []) => (x, y)
+    _              => ("", "")
 
 -- TODO: uwap please make this better
+partial   -- TODO: Nuke this annotation after https://github.com/relrod/idris-split/issues/1
 responseHeaders : RawResponse String -> List (String, String)
 responseHeaders (MkRawResponse r) =
   let headersRaw = fst $ splitDoubleCRLF r
@@ -51,5 +52,6 @@ responseHeaders (MkRawResponse r) =
       headers = map splitColon headerLines
   in headers
 
+partial   -- TODO: Nuke this annotation after https://github.com/relrod/idris-split/issues/1
 responseBody : RawResponse String -> String
 responseBody (MkRawResponse r) = snd . splitDoubleCRLF $ r
