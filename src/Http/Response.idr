@@ -36,12 +36,19 @@ splitDoubleCRLF s = splitDoubleCRLF' (the (List Char) List.Nil) (unpack s)
     splitDoubleCRLF' consumed (l::rest) = splitDoubleCRLF' (consumed ++ [l]) rest
     splitDoubleCRLF' consumed [] = (pack consumed, "")
 
+splitColon : String -> (String, String)
+splitColon s = splitColon' (the (List Char) List.Nil) (unpack s)
+  where
+    splitColon' consumed (':'::rest) = (trim (pack consumed), trim (pack rest))
+    splitColon' consumed (l::rest) = splitColon' (consumed ++ [l]) rest
+    splitColon' consumed [] = (pack consumed, "")
+
 -- TODO: uwap please make this better
-responseHeaders : RawResponse String -> List (List String)
+responseHeaders : RawResponse String -> List (String, String)
 responseHeaders (MkRawResponse r) =
   let headersRaw = fst $ splitDoubleCRLF r
       headerLines = drop 1 . lines $ headersRaw
-      headers = map (map trim . split (== ':')) headerLines
+      headers = map splitColon headerLines
   in headers
 
 responseBody : RawResponse String -> String
