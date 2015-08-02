@@ -47,24 +47,6 @@ record Request where
   ||| Headers to pass along.
   headers : Vect q (String, String)
 
-urlEncode : String -> String
-urlEncode = id -- TODO: Implement
-
-||| This fiunctions folds a list of query parameters
-||| into a query string without prepending '?'.
-||| It will also url encode all strings.
-|||
-||| For example `encodeQuery [("hello", "world"), ("foo", "bar")]`
-||| encodes to "hello=world&foo=bar".
-|||
-||| @ n The length of the vector => the number of query parameters
-||| @ q The vector of query param tuples
-encodeQuery : (q : Vect n (String, String)) -> String
-encodeQuery [] = ""
-encodeQuery ((k,v) :: []) = urlEncode k ++ "=" ++ urlEncode v
-encodeQuery ((k,v) :: xs) =
-  urlEncode k ++ "=" ++ urlEncode v ++ "&" ++ encodeQuery xs
-
 ||| This is the first line of a request line defined in RFC7230 Section 3.1.1.
 |||
 ||| @ req The request to get the request line from.
@@ -80,8 +62,9 @@ private
 headerFields : (req : Request) -> String
 headerFields req = fields (headers req)
   where
+    fields : Vect n (String, String) -> String
     fields [] = ""
-    fields ((k,v) :: xs) = k ++ ": " ++ v ++ "\r\n"
+    fields ((k,v) :: xs) = k ++ ": " ++ v ++ "\r\n" ++ fields xs
 
 ||| Convert a request into a string.
 ||| This follows RFC7230's definition of an HTTP-Message defined in Section 3.
@@ -89,4 +72,4 @@ headerFields req = fields (headers req)
 ||| @ req The request to convert.
 resolveRequest : (req : Request) -> String
 resolveRequest req =
-  requestLine req ++ requestHeaders req ++ "\r\n"
+  requestLine req ++ headerFields req ++ "\r\n"
