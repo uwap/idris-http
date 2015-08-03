@@ -13,6 +13,11 @@ cd idris-http
 idris --install http.ipkg
 ```
 
+## Documentation
+
+The documentation is available at [http://uwap.github.io/idris-http/](http://uwap.github.io/idris-http/).  
+Note: Due to [Issue #2161](https://github.com/idris-lang/Idris-dev/issues/2161) the documentation isn't complete.
+
 ## Running/Testing an example
 
 First install http by typing
@@ -29,3 +34,7 @@ cd examples/simple/
 idris --build simple.ipkg
 ./simple
 ```
+
+## Contributing
+
+Feel free to fork and change idris-http. We are glad to see pull-requests and issue reports.
