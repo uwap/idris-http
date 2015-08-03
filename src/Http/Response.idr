@@ -21,6 +21,7 @@ record Response where
   responseHeaders : Vect n (String, String)
   responseBody : String
 
+private
 parseResponseStatus : String -> Maybe ResponseStatus
 parseResponseStatus r with (lines r)
   | (x :: _) with (words x)
@@ -33,6 +34,7 @@ parseResponseStatus r with (lines r)
   | [] = Nothing
 
 ||| Parses one header line as defined in RFC7230 Section 3.2.
+private
 parseHeaderField : String -> Maybe (String, String)
 parseHeaderField line with (split (==':') line)
   | (x :: []) = Nothing
