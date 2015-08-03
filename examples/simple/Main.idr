@@ -26,6 +26,7 @@ main =
       case !(sendRequest req) of
         Left err => print err >>= \_ => putStr "\n"
         Right s => do
+          print s
           case parseResponse s of
             Nothing => print "Error parsing response"
             Just res => do
@@ -37,7 +38,7 @@ main =
               traverse (\x => do print x; putStr "\n") (responseHeaders res)
               putStr "\n\n"
 
-              -- putStrLn "Body:"
-              -- print (responseBody s)
-              -- putStr "\n\n"
+              putStrLn "Body:"
+              print (responseBody res)
+              putStr "\n\n"
     Nothing => putStrLn "Usage: ./simple method host [port] path"

@@ -19,9 +19,10 @@ record Response where
   constructor MkResponse
   responseStatus : ResponseStatus
   responseHeaders : Vect n (String, String)
+  responseBody : String
 
-parseResponseStatus : RawResponse String -> Maybe ResponseStatus
-parseResponseStatus (MkRawResponse r) with (lines r)
+parseResponseStatus : String -> Maybe ResponseStatus
+parseResponseStatus r with (lines r)
   | (x :: _) with (words x)
                 | (_ :: _ :: []) = Nothing
                 | (ver :: code :: cmt) with (the Int (cast code))
@@ -34,6 +35,7 @@ parseResponseStatus (MkRawResponse r) with (lines r)
 ||| Parses one header line as defined in RFC7230 Section 3.2.
 parseHeaderField : String -> Maybe (String, String)
 parseHeaderField line with (split (==':') line)
+  | (x :: []) = Nothing
   | (k :: v) = Just (k, trim $ join ":" v)
   where
     join : String -> List String -> String
@@ -41,17 +43,23 @@ parseHeaderField line with (split (==':') line)
     join p (x :: []) = x
     join p (x :: xs) = x ++ p ++ join p xs
   | _ = Nothing
-   
+
 ||| Parse a response message as defined in RFC7230 Section 3.
 |||
 ||| @ rres A raw HTTP response
 parseResponse : (rres : RawResponse String) -> Maybe Response
-parseResponse (MkRawResponse str) with (lines str)
+parseResponse (MkRawResponse str) with (lines'' str)
   | [] = Nothing
-  | (x :: xs) = Just $ MkResponse !(parseResponseStatus (MkRawResponse x)) (fromList !(parseLines xs))
+  | (x :: xs) = parseLines (MkResponse !(parseResponseStatus x) [] "") xs
   where
-    parseLines : List String -> Maybe (List (String, String))
-    parseLines ("" :: xs) = Just [] -- parseBody (unlines xs)
-                                  -- TODO: Implement parseBody
-    parseLines (x :: xs) = Just $ !(parseLines xs) ++ pure !(parseHeaderField x)
-    parseLines [] = Just []
+    unlines : List String -> String
+    unlines [] = ""
+    unlines (x :: xs) = x
+    unlines (x :: y :: xs) = x ++ "\r\n" ++ unlines (y :: xs)
+
+    parseLines : Response -> List String -> Maybe Response
+    parseLines r ("" :: xs) = Just $ record { responseBody = unlines xs } r
+    parseLines r (x :: xs) = do
+      r' <- parseLines r xs
+      Just $ record { responseHeaders = !(parseHeaderField x) :: responseHeaders r' } r'
+    parseLines r [] = Just r
