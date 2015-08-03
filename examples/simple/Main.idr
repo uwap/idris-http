@@ -23,21 +23,18 @@ main : IO ()
 main =
   case processArgs !getArgs of
     Just req =>
-      case !(sendRequest req) of
+      case !(httpRequest req) of
         Left err => print err >>= \_ => putStr "\n"
-        Right s =>
-          case parseResponse s of
-            Nothing => print "Error parsing response"
-            Just res => do
-              putStrLn "Response status:"
-              print (responseStatus res)
-              putStr "\n\n"
+        Right res => do
+          putStrLn "Response status:"
+          print (responseStatus res)
+          putStr "\n\n"
 
-              putStrLn "Headers Received:"
-              traverse (\x => do print x; putStr "\n") (responseHeaders res)
-              putStr "\n\n"
+          putStrLn "Headers Received:"
+          traverse (\x => do print x; putStr "\n") (responseHeaders res)
+          putStr "\n\n"
 
-              putStrLn "Body:"
-              print (responseBody res)
-              putStr "\n\n"
+          putStrLn "Body:"
+          print (responseBody res)
+          putStr "\n\n"
     Nothing => putStrLn "Usage: ./simple method host [port] path"
