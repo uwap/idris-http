@@ -48,17 +48,23 @@ parseHeaderField line with (split (==':') line)
 |||
 ||| @ rres A raw HTTP response
 parseResponse : (rres : RawResponse String) -> Maybe Response
-parseResponse (MkRawResponse str) with (lines str)
-  | [] = Nothing
-  | (x :: xs) = parseLines (MkResponse !(parseResponseStatus x) [] "") xs
+parseResponse (MkRawResponse str) =
+    let (rhead, rbody) = splitBody (unpack str) in
+      case lines rhead of
+        [] => Nothing
+        (x :: xs) => parseLines (MkResponse !(parseResponseStatus x) [] rbody) xs
   where
+    splitBody : List Char -> (String, String)
+    splitBody ('\r' :: '\n' :: '\r' :: '\n' :: xs) = ("", pack xs)
+    splitBody [] = ("", "")
+    splitBody (x :: xs) = let (h, b) = splitBody xs in (strCons x h, b)
+
     unlines : List String -> String
     unlines [] = ""
     unlines (x :: xs) = x
     unlines (x :: y :: xs) = x ++ "\r\n" ++ unlines (y :: xs)
 
     parseLines : Response -> List String -> Maybe Response
-    parseLines r ("" :: xs) = Just $ record { responseBody = unlines xs } r
     parseLines r (x :: xs) = do
       r' <- parseLines r xs
       Just $ record { responseHeaders = !(parseHeaderField x) :: responseHeaders r' } r'

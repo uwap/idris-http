@@ -25,7 +25,7 @@ main =
     Just req =>
       case !(sendRequest req) of
         Left err => print err >>= \_ => putStr "\n"
-        Right s => do
+        Right s =>
           case parseResponse s of
             Nothing => print "Error parsing response"
             Just res => do
