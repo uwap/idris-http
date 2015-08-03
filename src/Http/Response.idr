@@ -48,7 +48,7 @@ parseHeaderField line with (split (==':') line)
 |||
 ||| @ rres A raw HTTP response
 parseResponse : (rres : RawResponse String) -> Maybe Response
-parseResponse (MkRawResponse str) with (lines'' str)
+parseResponse (MkRawResponse str) with (lines str)
   | [] = Nothing
   | (x :: xs) = parseLines (MkResponse !(parseResponseStatus x) [] "") xs
   where

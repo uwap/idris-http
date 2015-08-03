@@ -26,7 +26,6 @@ main =
       case !(sendRequest req) of
         Left err => print err >>= \_ => putStr "\n"
         Right s => do
-          print s
           case parseResponse s of
             Nothing => print "Error parsing response"
             Just res => do
