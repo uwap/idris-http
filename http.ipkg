@@ -1,5 +1,5 @@
 package http
 
-modules   = Http, Http.Uri, Http.RawResponse, Http.Request, Http.Response
+modules   = Http, Http.Uri, Http.RawResponse, Http.Request, Http.Response, Http.Error
 sourcedir = src
 opts      = "-p contrib --total"

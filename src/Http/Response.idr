@@ -2,6 +2,7 @@ module Http.Response
 
 import Data.Vect
 import Http.RawResponse
+import Http.Error
 
 %access public
 
@@ -22,38 +23,36 @@ record Response where
   responseBody : String
 
 private
-parseResponseStatus : String -> Maybe ResponseStatus
-parseResponseStatus r with (lines r)
-  | (x :: _) with (words x)
-                | (_ :: _ :: []) = Nothing
-                | (ver :: code :: cmt) with (the Int (cast code))
-                  | 0 = Nothing
-                  | n = Just $
-                        MkResponseStatus ver n (unwords cmt)
-                | _ = Nothing
-  | [] = Nothing
+parseResponseStatus : String -> Either HttpError ResponseStatus
+parseResponseStatus x with (words x)
+  | (_ :: _ :: []) = Left $ HttpParseError "Error parsing Response Status Line."
+  | (ver :: code :: cmt) with (the Int (cast code))
+    | 0 = Left $ HttpParseError "Invalid Status Code."
+    | n = Right $
+          MkResponseStatus ver n (unwords cmt)
+  | _ = Left $ HttpParseError "Error parsing Response Status Line."
 
 ||| Parses one header line as defined in RFC7230 Section 3.2.
 private
-parseHeaderField : String -> Maybe (String, String)
+parseHeaderField : String -> Either HttpError (String, String)
 parseHeaderField line with (split (==':') line)
-  | (x :: []) = Nothing
-  | (k :: v) = Just (k, trim $ join ":" v)
+  | (x :: []) = Left $ HttpParseError "Error parsing Response Header."
+  | (k :: v) = Right (k, trim $ join ":" v)
   where
     join : String -> List String -> String
     join p [] = ""
     join p (x :: []) = x
     join p (x :: xs) = x ++ p ++ join p xs
-  | _ = Nothing
+  | _ = Left $ HttpParseError "Error parsing Response Header."
 
 ||| Parse a response message as defined in RFC7230 Section 3.
 |||
 ||| @ rres A raw HTTP response
-parseResponse : (rres : RawResponse String) -> Maybe Response
+parseResponse : (rres : RawResponse String) -> Either HttpError Response
 parseResponse (MkRawResponse str) =
     let (rhead, rbody) = splitBody (unpack str) in
       case lines rhead of
-        [] => Nothing
+        [] => Left $ HttpParseError "The response was empty."
         (x :: xs) => parseLines (MkResponse !(parseResponseStatus x) [] rbody) xs
   where
     splitBody : List Char -> (String, String)
@@ -66,8 +65,8 @@ parseResponse (MkRawResponse str) =
     unlines (x :: xs) = x
     unlines (x :: y :: xs) = x ++ "\r\n" ++ unlines (y :: xs)
 
-    parseLines : Response -> List String -> Maybe Response
+    parseLines : Response -> List String -> Either HttpError Response
     parseLines r (x :: xs) = do
       r' <- parseLines r xs
-      Just $ record { responseHeaders = !(parseHeaderField x) :: responseHeaders r' } r'
-    parseLines r [] = Just r
+      Right $ record { responseHeaders = !(parseHeaderField x) :: responseHeaders r' } r'
+    parseLines r [] = Right r

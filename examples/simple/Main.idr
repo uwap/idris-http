@@ -1,8 +1,10 @@
 import Http
 import Http.Uri
+import Http.Error
 import Http.RawResponse
 import Http.Request
 import Http.Response
+import Data.Vect -- Remove after upgrading to idris 0.9.19
 import Network.Socket
 import System
 

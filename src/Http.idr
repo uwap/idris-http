@@ -1,20 +1,14 @@
 module Http
 
 import Http.Uri
+import Http.Error
 import Http.RawResponse
 import Http.Request
 import Http.Response
+import Data.Vect -- remove after upgrading to idris 0.9.19
 import Network.Socket
 
 %access public
-
-data HttpError : Type where
-  HttpSocketError : SocketError -> HttpError
-  HttpParseError : String -> HttpError
-
-instance Show HttpError where
-  show (HttpSocketError err) = show err
-  show (HttpParseError err) = err
 
 private
 sendRequest : Request -> IO (Either HttpError (RawResponse String))
@@ -40,14 +34,9 @@ sendRequest req = do
     port = uriPort . uriAuth . uri $ req
 
 httpRequest : Request -> IO (Either HttpError Response)
-httpRequest req = return $
-  case parseResponse <$> !(sendRequest req) of
-       Left err => Left err
-       Right mr => maybeToEither (HttpParseError "Wasn't able to parse response") mr
+httpRequest req = return $ !(sendRequest req) >>= parseResponse
 
-simpleHttp : Host -> Port -> (path : String) -> IO (Maybe Response)
+simpleHttp : Host -> Port -> (path : String) -> IO (Either HttpError Response)
 simpleHttp host port path = do
   repl <- sendRequest (MkRequest GET (MkURI "http" (MkURIAuth Nothing Nothing host port) path [] "") [] [])
-  return $ case repl of
-       Right r => parseResponse r
-       Left _ => Nothing
+  return (repl >>= parseResponse)
