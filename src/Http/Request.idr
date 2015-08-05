@@ -36,7 +36,7 @@ httpVersion = "HTTP/1.1"
 record Request where
   constructor MkRequest
   ||| The requests method. Either POST or GET.
-  method   : Method
+  method : Method
 
   ||| The URI we're attempting to access.
   uri : URI
