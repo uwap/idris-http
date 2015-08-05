@@ -33,10 +33,10 @@ sendRequest req = do
     port : Int
     port = uriPort . uriAuth . uri $ req
 
-httpRequest : Request -> IO (Either HttpError Response)
+httpRequest : Request -> IO (Either HttpError (Response String))
 httpRequest req = return $ !(sendRequest req) >>= parseResponse
 
-simpleHttp : Host -> Port -> (path : String) -> IO (Either HttpError Response)
+simpleHttp : Host -> Port -> (path : String) -> IO (Either HttpError (Response String))
 simpleHttp host port path = do
   repl <- sendRequest (MkRequest GET (MkURI "http" (MkURIAuth Nothing Nothing host port) path [] "") [] [])
   return (repl >>= parseResponse)

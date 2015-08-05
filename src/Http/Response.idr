@@ -16,11 +16,11 @@ instance Show ResponseStatus where
   show (MkResponseStatus ver code cmt) =
     "MkResponseStatus " ++ ver ++ " " ++ show code ++ " " ++ cmt
 
-record Response where
+record Response a where
   constructor MkResponse
   responseStatus : ResponseStatus
   responseHeaders : Vect n (String, String)
-  responseBody : String
+  responseBody : a
 
 private
 parseResponseStatus : String -> Either HttpError ResponseStatus
@@ -48,7 +48,7 @@ parseHeaderField line with (split (==':') line)
 ||| Parse a response message as defined in RFC7230 Section 3.
 |||
 ||| @ rres A raw HTTP response
-parseResponse : (rres : RawResponse String) -> Either HttpError Response
+parseResponse : (rres : RawResponse String) -> Either HttpError (Response String)
 parseResponse (MkRawResponse str) =
     let (rhead, rbody) = splitBody (unpack str) in
       case lines rhead of
@@ -65,8 +65,10 @@ parseResponse (MkRawResponse str) =
     unlines (x :: xs) = x
     unlines (x :: y :: xs) = x ++ "\r\n" ++ unlines (y :: xs)
 
-    parseLines : Response -> List String -> Either HttpError Response
+    parseLines : Response a -> List String -> Either HttpError (Response a)
     parseLines r (x :: xs) = do
       r' <- parseLines r xs
       Right $ record { responseHeaders = !(parseHeaderField x) :: responseHeaders r' } r'
     parseLines r [] = Right r
+
+
