@@ -19,7 +19,7 @@ instance Show ResponseStatus where
 record Response a where
   constructor MkResponse
   responseStatus : ResponseStatus
-  responseHeaders : Vect n (String, String)
+  responseHeaders : Vect n (String, String) -- TODO: We might want to model this as a map
   responseBody : a
 
 private
@@ -45,7 +45,22 @@ parseHeaderField line with (split (==':') line)
     join p (x :: xs) = x ++ p ++ join p xs
   | _ = Left $ HttpParseError "Error parsing Response Header."
 
+||| Get the length of the response body as defined in RFC7230 Section 3.3.3.
+||| INCOMPLETE
+private
+getResponseBodyLength : Response a -> Integer
+getResponseBodyLength res = let code = responseStatusCode . responseStatus $ res in
+  if code == 204 || code == 304 || (code >= 100 && code < 200) then 0 else -- 1.
+  if code >= 200 && code < 300 then 0 else                                 -- 2.
+  0 -- TODO: Return the length defined in the responseHeader
+
 ||| Parse a response message as defined in RFC7230 Section 3.
+||| INCOMPLETE due to:
+|||   1. No call to getResponseBodyLength
+|||   2. getResponseBodyLength is incomplete
+|||   3. doesn't allow reading multiple Http responses at once.
+|||   4. No encoding
+|||   5. TODO: Add more reasons
 |||
 ||| @ rres A raw HTTP response
 parseResponse : (rres : RawResponse String) -> Either HttpError (Response String)
