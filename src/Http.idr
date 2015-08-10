@@ -38,5 +38,6 @@ httpRequest req = return $ !(sendRequest req) >>= parseResponse
 
 simpleHttp : Host -> Port -> (path : String) -> IO (Either HttpError (Response String))
 simpleHttp host port path = do
-  repl <- sendRequest (MkRequest GET (MkURI "http" (MkURIAuth Nothing Nothing host port) path [] "") "" empty)
+  let headers = Data.SortedMap.fromList [("Host", host ++ ":" ++ show port)]
+  repl <- sendRequest (MkRequest GET (MkURI "http" (MkURIAuth Nothing Nothing host port) path [] "") "" headers)
   return (repl >>= parseResponse)
