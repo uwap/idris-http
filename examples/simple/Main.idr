@@ -4,17 +4,17 @@ import Http.Error
 import Http.RawResponse
 import Http.Request
 import Http.Response
-import Data.Vect -- Remove after upgrading to idris 0.9.19
+import Data.SortedMap -- Remove after upgrading to idris 0.9.19
 import Network.Socket
 import System
 
 uri : String -> Int -> String -> URI
 uri host port path = MkURI "http" (MkURIAuth Nothing Nothing host port) path [] ""
 
-toRequest : Method -> String -> Int -> String -> Request
-toRequest method host port path = MkRequest method (uri host port path) [] [("Host", host)]
+toRequest : Method -> String -> Int -> String -> Request String
+toRequest method host port path = MkRequest method (uri host port path) "" (fromList [("Host", host)])
 
-processArgs : List String -> Maybe Request
+processArgs : List String -> Maybe (Request String)
 processArgs (_::method::host::port::path::_) =
   Just (toRequest (cast method) host (cast port) path)
 processArgs (_::method::host::path::_) = Just (toRequest (cast method) host 80 path)
@@ -33,7 +33,7 @@ main =
           putStr "\n\n"
 
           putStrLn "Headers Received:"
-          traverse (\x => do print x; putStr "\n") (responseHeaders res)
+          traverse (\x => do print x; putStr "\n") (Data.SortedMap.toList $ responseHeaders res)
           putStr "\n\n"
 
           putStrLn "Body:"

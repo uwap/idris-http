@@ -1,6 +1,6 @@
 module Http.Response
 
-import Data.Vect
+import Data.SortedMap
 import Http.RawResponse
 import Http.Error
 
@@ -19,7 +19,7 @@ instance Show ResponseStatus where
 record Response a where
   constructor MkResponse
   responseStatus : ResponseStatus
-  responseHeaders : Vect n (String, String) -- TODO: We might want to model this as a map
+  responseHeaders : SortedMap String String
   responseBody : a
 
 private
@@ -68,7 +68,7 @@ parseResponse (MkRawResponse str) =
     let (rhead, rbody) = splitBody (unpack str) in
       case lines rhead of
         [] => Left $ HttpParseError "The response was empty."
-        (x :: xs) => parseLines (MkResponse !(parseResponseStatus x) [] rbody) xs
+        (x :: xs) => parseLines (MkResponse !(parseResponseStatus x) empty rbody) xs
   where
     splitBody : List Char -> (String, String)
     splitBody ('\r' :: '\n' :: '\r' :: '\n' :: xs) = ("", pack xs)
@@ -83,7 +83,7 @@ parseResponse (MkRawResponse str) =
     parseLines : Response a -> List String -> Either HttpError (Response a)
     parseLines r (x :: xs) = do
       r' <- parseLines r xs
-      Right $ record { responseHeaders = !(parseHeaderField x) :: responseHeaders r' } r'
+      Right $ record { responseHeaders = uncurry insert !(parseHeaderField x) (responseHeaders r') } r'
     parseLines r [] = Right r
 
 
