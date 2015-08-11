@@ -13,6 +13,9 @@ instance Show Method where
   show GET  = "GET"
   show HEAD = "HEAD"
 
+instance Eq Method where
+  x == y = show x == show y
+
 instance Cast String Method where
   cast "POST" = POST
   cast "HEAD" = HEAD

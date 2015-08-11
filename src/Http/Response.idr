@@ -49,10 +49,11 @@ parseHeaderField line with (split (==':') line)
 ||| Get the length of the response body as defined in RFC7230 Section 3.3.3.
 ||| INCOMPLETE
 private
-getResponseBodyLength : Response a -> Integer
-getResponseBodyLength res = let code = responseStatusCode . responseStatus $ res in
-  if code == 204 || code == 304 || (code >= 100 && code < 200) then 0 else -- 1.
-  if code >= 200 && code < 300 then 0 else                                 -- 2.
+getResponseBodyLength : Request a -> Response b -> Integer
+getResponseBodyLength req res = let code = responseStatusCode . responseStatus $ res in
+  if method req == HEAD then 0 else                                        -- 1. Response to HEAD request
+  if code == 204 || code == 304 || (code >= 100 && code < 200) then 0 else -- 1. Response Code 204, 304, 1xx
+  if code >= 200 && code < 300 then 0 else                                 -- 2. Response Code 2xx
   0 -- TODO: Return the length defined in the responseHeader
 
 ||| Parse a response message as defined in RFC7230 Section 3.
