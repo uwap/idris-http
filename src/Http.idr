@@ -33,11 +33,12 @@ sendRequest req = do
     port : Int
     port = uriPort . uriAuth . uri $ req
 
-httpRequest : Request a -> IO (Either HttpError (Response String))
-httpRequest req = return $ !(sendRequest req) >>= parseResponse
+httpRequest : (Show a, Cast String b) => Request a -> IO (Either HttpError (Response b))
+httpRequest req = return $ !(sendRequest req) >>= parseResponse req
 
-simpleHttp : Host -> Port -> (path : String) -> IO (Either HttpError (Response String))
+simpleHttp : Cast String a => Host -> Port -> (path : String) -> IO (Either HttpError (Response a))
 simpleHttp host port path = do
   let headers = Data.SortedMap.fromList [("Host", host ++ ":" ++ show port)]
-  repl <- sendRequest (MkRequest GET (MkURI "http" (MkURIAuth Nothing Nothing host port) path [] "") "" headers)
-  return (repl >>= parseResponse)
+  let req = MkRequest GET (MkURI "http" (MkURIAuth Nothing Nothing host port) path [] "") "" headers
+  repl <- sendRequest req
+  return (repl >>= parseResponse req)
