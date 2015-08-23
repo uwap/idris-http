@@ -3,7 +3,6 @@ module Http.Response
 import Data.SortedMap
 import Http.RawResponse
 import Http.Error
-import Http.Request
 
 %access public
 
@@ -63,13 +62,14 @@ getResponseBodyLength req res = let code = responseStatusCode . responseStatus $
 |||   3. doesn't allow reading multiple Http responses at once.
 |||   4. No encoding
 |||   5. TODO: Add more reasons
-parseResponse : (Show a, Show b, Cast String c) => Request a -> RawResponse b -> Either HttpError (Response c)
-parseResponse req (MkRawResponse rres) with (show rres)
-  | str =
+|||
+||| @ rres A raw HTTP response
+parseResponse : (rres : RawResponse String) -> Either HttpError (Response String)
+parseResponse (MkRawResponse str) =
     let (rhead, rbody) = splitBody (unpack str) in
       case lines rhead of
         [] => Left $ HttpParseError "The response was empty."
-        (x :: xs) => parseLines (MkResponse !(parseResponseStatus x) empty (cast rbody)) xs
+        (x :: xs) => parseLines (MkResponse !(parseResponseStatus x) empty rbody) xs
   where
     splitBody : List Char -> (String, String)
     splitBody ('\r' :: '\n' :: '\r' :: '\n' :: xs) = ("", pack xs)
@@ -81,7 +81,7 @@ parseResponse req (MkRawResponse rres) with (show rres)
     unlines (x :: xs) = x
     unlines (x :: y :: xs) = x ++ "\r\n" ++ unlines (y :: xs)
 
-    parseLines : Cast String c => Response c -> List String -> Either HttpError (Response c)
+    parseLines : Response a -> List String -> Either HttpError (Response a)
     parseLines r (x :: xs) = do
       r' <- parseLines r xs
       Right $ record { responseHeaders = uncurry insert !(parseHeaderField x) (responseHeaders r') } r'

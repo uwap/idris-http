@@ -14,29 +14,23 @@ processArgs (_::host::port::path::_) =
 processArgs (_::host::path::_) = Just (host, 80, path)
 processArgs _ = Nothing
 
-instance Cast String String where
-  cast = id
-
-printResponse : Response String -> IO ()
-printResponse res = do
-  putStrLn "Response status:"
-  print (responseStatus res)
-  putStr "\n\n"
-
-  putStrLn "Headers Received:"
-  traverse (\x => do print x; putStr "\n") (Data.SortedMap.toList $ responseHeaders res)
-  putStr "\n\n"
-
-  putStrLn "Body:"
-  putStr (responseBody res)
-  putStr "\n\n"
-  
 partial
 main : IO ()
 main =
   case processArgs !getArgs of
     Just (host, port, path) =>
-      case !(simpleHttp host port path {a = String}) of
+      case !(simpleHttp host port path) of
         Left err => print err >>= \_ => putStr "\n"
-        Right res => printResponse res
+        Right res => do
+          putStrLn "Response status:"
+          print (responseStatus res)
+          putStr "\n\n"
+
+          putStrLn "Headers Received:"
+          traverse (\x => do print x; putStr "\n") (Data.SortedMap.toList $ responseHeaders res)
+          putStr "\n\n"
+
+          putStrLn "Body:"
+          print (responseBody res)
+          putStr "\n\n"
     Nothing => putStrLn "Usage: ./simple host [port] path"
