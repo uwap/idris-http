@@ -20,7 +20,7 @@ record URI where
 urlEncode : String -> String
 urlEncode = id -- TODO: Implement
 
-||| This fiunctions folds a list of query parameters
+||| This functions folds a list of query parameters
 ||| into a query string without prepending '?'.
 ||| It will also url encode all strings.
 |||

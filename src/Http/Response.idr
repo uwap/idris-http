@@ -1,6 +1,7 @@
 module Http.Response
 
 import Data.SortedMap
+import Http.Request
 import Http.RawResponse
 import Http.Error
 
