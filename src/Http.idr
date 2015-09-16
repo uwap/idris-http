@@ -5,7 +5,8 @@ import Http.Error
 import Http.RawResponse
 import Http.Request
 import Http.Response
-import Data.SortedMap -- remove after upgrading to idris 0.9.19
+import Data.SortedMap
+import Data.Vect
 import Network.Socket
 
 %access public
