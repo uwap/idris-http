@@ -36,10 +36,10 @@ encodeQuery ((k,v) :: xs) =
   urlEncode k ++ "=" ++ urlEncode v ++ "&" ++ encodeQuery xs
 
 uriToString : URI -> String
-uriToString u =
+uriToString u = let query = encodeQuery (uriQuery u) in
   uriScheme u ++ "://" ++ authStr (uriAuth u) ++
   (uriHost . uriAuth $ u) ++ ":" ++ show (uriPort . uriAuth $ u) ++
-  uriPath u ++ "?" ++ encodeQuery (uriQuery u) ++ uriFragment u
+  uriPath u ++ querySeperator query ++ query ++ uriFragment u
   where
     authPassword : URIAuth -> String
     authPassword u' = fromMaybe "" (uriPassword u' >>= return . (":" ++))
@@ -50,3 +50,7 @@ uriToString u =
 
     authStr : URIAuth -> String
     authStr u' = fromMaybe "" (authStrMaybe u')
+
+    querySeperator : String -> String
+    querySeperator "" = ""
+    querySeperator _ = "?"
