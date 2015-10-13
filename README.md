@@ -5,11 +5,16 @@ An HTTP library for idris 0.9.18.1.
 
 ## How to install
 
-Clone the repository and install it using the idris package manager:
+Clone the repository and install it using the idris package manager.
+Idris-http depends on [lightyear](http://github.com/ziman/lightyear/).
+You can install it with our install-dependencies script.
+
+The easiest way to install idris-http is to run the command line code below:
 
 ```
 git clone https://github.com/uwap/idris-http.git
 cd idris-http
+./install_dependencies.sh
 idris --install http.ipkg
 ```
 
