@@ -1,7 +1,7 @@
 ![Travis Status](https://travis-ci.org/uwap/idris-http.svg "Travis Build Status")
 
 # idris-http
-An HTTP library for idris 0.9.18.1.
+An HTTP library for idris 0.9.19.1.
 
 ## How to install
 
