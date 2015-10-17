@@ -25,7 +25,10 @@ before_install:
     fi
 
 install:
-  - travis_wait $CABAL install idris
+#  - travis_wait $CABAL install idris
+  - echo "Loading precompiled idris"; pushd /tmp; wget http://twitter.starletp9.de/20151017-idris-sandbox.tar.lzma -O - | lzma -d | tar -x; popd
+  - export PATH=$PATH:/tmp/idris-sandbox/.cabal-sandbox/bin
+  - echo "Installing dependencies"; ./install_dependencies.sh
 
 before_script:
   - export PATH=$PATH:~/.cabal/bin
