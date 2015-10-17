@@ -26,6 +26,7 @@ before_install:
 
 install:
   - travis_wait $CABAL install -j idris
+  - echo "Installing dependencies"; ./install_dependencies.sh
 
 before_script:
   - export PATH=$PATH:~/.cabal/bin
