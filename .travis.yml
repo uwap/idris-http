@@ -7,6 +7,10 @@ addons:
       - cabal-install-1.22
       - ghc-7.10.1
       - happy
+cache:
+  directories:
+    - ~/.cabal
+    - ~/.ghc
 
 env:
   - GHCVER=7.10.1 CABAL=cabal-1.22
@@ -24,7 +28,7 @@ before_install:
     fi
 
 install:
-  - travis_wait $CABAL install -j idris & echo -n "Waiting for cabal to terminate"; while ps -Af | grep -v grep | grep -q $CABAL; do echo -n .; sleep 60; done
+  - travis_wait $CABAL install -j idris & sleep 1; echo -n "Waiting for cabal to terminate"; while ps -Af | grep -v grep | grep -q $CABAL; do echo -n .; sleep 1; done
   - echo "Installing dependencies"; ./install_dependencies.sh
 
 before_script:
@@ -41,3 +45,6 @@ notifications:
     skip_join: false
     template:
       - "\x0313idris-http\x0f/\x0306%{branch}\x0f \x0314%{commit}\x0f %{message} \x0302\x1f%{build_url}\x0f"
+
+before_cache:
+  - find ~/.cabal/ -iname '*.log' -delete #we do not want to cache logs
