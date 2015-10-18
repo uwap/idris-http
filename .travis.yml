@@ -28,7 +28,12 @@ before_install:
     fi
 
 install:
-  - travis_wait $CABAL install -j idris & sleep 1; echo -n "Waiting for cabal to terminate"; while ps -Af | grep -v grep | grep -q $CABAL; do echo -n .; sleep 1; done
+  - travis_wait $CABAL install -j idris &
+  - sleep 1; #waiting for cabal to be spawned
+  - while ps -Af | grep -v grep | grep -q $CABAL; do
+      echo -n .;
+      sleep 1;
+    done #waiting for cabal to be terminated while doing dummyoutputs
   - echo "Installing dependencies"; ./install_dependencies.sh
 
 before_script:
