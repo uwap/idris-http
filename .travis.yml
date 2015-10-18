@@ -33,6 +33,7 @@ before_script:
 
 script:
   - idris --build http.ipkg
+  - idris --install http.ipkg
   - pushd examples/simple
   - idris --build simple.ipkg
   - popd
