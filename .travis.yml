@@ -54,3 +54,4 @@ notifications:
 
 before_cache:
   - find ~/.cabal/ -iname '*.log' -delete #we do not want to cache logs
+  - rm -r ~/.cabal/share/x86_64-linux-ghc-7.10.1/idris-0.9.19.1/http/ #we do not want to cache http, because that's the thing we are testing
