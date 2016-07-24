@@ -9,7 +9,7 @@ import Data.SortedMap
 import Data.Vect
 import Network.Socket
 
-%access public
+%access export
 
 private
 sendRequest : Request a -> IO (Either HttpError (RawResponse String))

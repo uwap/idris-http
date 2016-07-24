@@ -10,18 +10,20 @@ import Http.Request
 import Http.RawResponse
 import Http.Error
 
-%access public
+%access export
 
+public export
 record ResponseStatus where
   constructor MkResponseStatus
   responseStatusVersion : String
   responseStatusCode : Int
   responseStatusComment : String
 
-instance Show ResponseStatus where
+implementation Show ResponseStatus where
   show (MkResponseStatus ver code cmt) =
     "MkResponseStatus " ++ ver ++ " " ++ show code ++ " " ++ cmt
 
+public export
 record Response a where
   constructor MkResponse
   responseStatus : ResponseStatus

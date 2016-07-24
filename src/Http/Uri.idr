@@ -2,6 +2,8 @@ module Http.Uri
 
 import Data.Vect
 
+%access public export
+
 record URIAuth where
   constructor MkURIAuth
   uriUsername : Maybe String

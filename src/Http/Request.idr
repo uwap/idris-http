@@ -3,25 +3,27 @@ module Http.Request
 import Data.SortedMap
 import Http.Uri
 
-%access public
+%access export
 
 ||| The HTTP Method which is either POST or GET
+public export
 data Method = POST | GET | HEAD
 
-instance Show Method where
+implementation Show Method where
   show POST = "POST"
   show GET  = "GET"
   show HEAD = "HEAD"
 
-instance Eq Method where
+implementation Eq Method where
   x == y = show x == show y
 
-instance Cast String Method where
+implementation Cast String Method where
   cast "POST" = POST
   cast "HEAD" = HEAD
   cast _      = GET
 
 ||| A String-alias for Hosts.
+public export
 Host : Type
 Host = String
 
@@ -36,6 +38,7 @@ httpVersion = "HTTP/1.1"
 ||| A data type for requests.
 ||| A request consists out of a method,
 ||| a host, a port, a path, a query and a http version.
+public export
 record Request a where
   constructor MkRequest
   ||| The requests method. Either POST or GET.
