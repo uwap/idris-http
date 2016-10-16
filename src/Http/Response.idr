@@ -43,7 +43,7 @@ responseStatusParser = do
   space
   comment <- some (noneOf "\n\r")
   crlf
-  return $ MkResponseStatus (pack version) statusCode (pack comment)
+  pure $ MkResponseStatus (pack version) statusCode (pack comment)
 
 private
 headerFieldParser : Parser (String, String)
@@ -52,11 +52,11 @@ headerFieldParser = do
   char ':' >! opt (char ' ')
   value <- some (noneOf "\n\r")
   opt (char ' ') >! crlf
-  return (pack (toLower <$> key), pack value)
+  pure (pack (toLower <$> key), pack value)
 
 bodyParser : SortedMap String String -> Parser String
 bodyParser map with (lookup "content-length" map)
-  | Nothing = return "error: Chunked encoding not supported yet."
+  | Nothing = pure "error: Chunked encoding not supported yet."
   | Just x = pack <$> ntimes (cast $ the Int (cast x)) anyChar
 
 private
@@ -65,7 +65,7 @@ responseParser = do
   status <- responseStatusParser
   fields <- many headerFieldParser
   body <- crlf >! bodyParser (fromList fields)
-  return $ MkResponse status (fromList fields) body
+  pure $ MkResponse status (fromList fields) body
 
 parseResponse : RawResponse String -> Either HttpError (Response String)
 parseResponse (MkRawResponse input) = case parse responseParser input of

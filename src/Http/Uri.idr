@@ -44,10 +44,10 @@ uriToString u = let query = encodeQuery (uriQuery u) in
   uriPath u ++ querySeperator query ++ query ++ uriFragment u
   where
     authPassword : URIAuth -> String
-    authPassword u' = fromMaybe "" (uriPassword u' >>= return . (":" ++))
+    authPassword u' = fromMaybe "" (uriPassword u' >>= pure . (":" ++))
 
     authStrMaybe : URIAuth -> Maybe String
-    authStrMaybe u' = return $
+    authStrMaybe u' = pure $
       !(uriUsername u') ++ authPassword u' ++ "@"
 
     authStr : URIAuth -> String

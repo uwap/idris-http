@@ -1,6 +1,6 @@
 module Http.RawResponse
 
-import Classes.Verified
+import Interfaces.Verified
 
 %access public export
 
