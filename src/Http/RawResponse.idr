@@ -1,7 +1,5 @@
 module Http.RawResponse
 
-import Interfaces.Verified
-
 %access public export
 
 data RawResponse a = MkRawResponse a
@@ -39,29 +37,3 @@ implementation Cast a (RawResponse a) where
   cast = pure
 implementation Cast (RawResponse a) a where
   cast (MkRawResponse a) = a
-
-implementation VerifiedFunctor RawResponse where
-  functorIdentity (MkRawResponse _) = Refl
-  functorComposition (MkRawResponse _) _ _ = Refl
-
-implementation VerifiedApplicative RawResponse where
-  applicativeMap (MkRawResponse _) _ = Refl
-  applicativeIdentity (MkRawResponse _) = Refl
-  applicativeComposition (MkRawResponse _) (MkRawResponse _) (MkRawResponse _) =
-    Refl
-  applicativeHomomorphism _ _ = Refl
-  applicativeInterchange _ (MkRawResponse _) = Refl
-
-implementation VerifiedMonad RawResponse where
-  monadApplicative (MkRawResponse _) (MkRawResponse _) = Refl
-  monadLeftIdentity _ _ = Refl
-  monadRightIdentity (MkRawResponse _) = Refl
-  monadAssociativity (MkRawResponse _) _ _ = Refl
-
-implementation VerifiedSemigroup a => VerifiedSemigroup (RawResponse a) where
-  semigroupOpIsAssociative (MkRawResponse a) (MkRawResponse b) (MkRawResponse c) =
-                                          rewrite semigroupOpIsAssociative a b c in Refl
-
-implementation VerifiedMonoid a => VerifiedMonoid (RawResponse a) where
-  monoidNeutralIsNeutralL (MkRawResponse a) = rewrite monoidNeutralIsNeutralL a in Refl
-  monoidNeutralIsNeutralR (MkRawResponse a) = rewrite monoidNeutralIsNeutralR a in Refl
