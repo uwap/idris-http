@@ -1,12 +1,12 @@
 ![Travis Status](https://travis-ci.org/uwap/idris-http.svg "Travis Build Status")
 
 # idris-http
-An HTTP library for idris 0.11.2.
+An HTTP library for idris 0.12.3.
 
 ## How to install
 
 Clone the repository and install it using the idris package manager.
-Idris-http depends on [lightyear](http://github.com/ziman/lightyear/).
+Idris-http depends on [lightyear](http://github.com/ziman/lightyear/) and [idris-bytes](https://github.com/ziman/idris-bytes).
 You can install it with our install-dependencies script.
 
 The easiest way to install idris-http is to run the command line code below:

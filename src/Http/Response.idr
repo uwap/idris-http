@@ -10,6 +10,8 @@ import Http.Request
 import Http.RawResponse
 import Http.Error
 
+import Data.Bytes as B
+
 %access export
 
 public export
@@ -54,9 +56,44 @@ headerFieldParser = do
   opt (char ' ') >! crlf
   pure (pack (toLower <$> key), pack value)
 
+private
+parseBodyChunkEncoded : Parser String
+parseBodyChunkEncoded = do
+    x <- hexParser
+    opt $ do
+      spaces
+      char ';'
+      some (noneOf "\n\r")
+    crlf
+    if x == 0 then many (noneOf "\n\r") *> crlf *> pure ""
+              else liftA2 (++) (parseBody x) parseBodyChunkEncoded
+  where
+    hexParser' : Int -> Parser Int
+    hexParser' x = do
+      c <- hexDigit
+      hex2 <- opt $ hexParser' (x*16)
+      let hex = ord $ toUpper c
+      let num = if hex >= ord '0' && hex <= ord '9'
+                   then hex - ord '0'
+                   else 10 + hex - ord 'A'
+      case hex2 of
+           Just x => pure (x * num)
+           Nothing => pure num
+    hexParser : Parser Int
+    hexParser = hexParser' 1
+    parseBody : Int -> Parser String
+    parseBody x = do
+      n <- pack <$> many (oneOf "\n\r")
+      s <- pack <$> some (noneOf "\n\r")
+      let len = B.length (B.fromString (s ++ n))
+      if x - len < 0 then fail ("Somehow the String " ++ s ++ n ++ " is longer than " ++ show x)
+      else if x - len == 0 then crlf *> pure s
+                           else map (s ++) $ parseBody (x - len)
+
+private
 bodyParser : SortedMap String String -> Parser String
 bodyParser map with (lookup "content-length" map)
-  | Nothing = pure "error: Chunked encoding not supported yet."
+  | Nothing = parseBodyChunkEncoded
   | Just x = pack <$> ntimes (cast $ the Int (cast x)) anyChar
 
 private

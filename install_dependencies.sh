@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dependencies=("https://github.com/ziman/lightyear")
+dependencies=("https://github.com/ziman/lightyear" "https://github.com/ziman/idris-bytes")
 wd=$(pwd)
 
 function checkSuccess {
