@@ -5,10 +5,10 @@ import Lightyear.Combinators
 import Lightyear.Char
 import Lightyear.Strings
 
-import Data.SortedMap
-import Http.Request
-import Http.RawResponse
-import Http.Error
+import public Data.SortedMap
+import public Http.Request
+import public Http.RawResponse
+import public Http.Error
 
 import Data.Bytes as B
 
@@ -107,4 +107,4 @@ responseParser = do
 parseResponse : RawResponse String -> Either HttpError (Response String)
 parseResponse (MkRawResponse input) = case parse responseParser input of
                                            Left err => Left $ HttpParseError err
-                                           Right re => Right re 
+                                           Right re => Right re

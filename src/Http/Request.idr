@@ -1,7 +1,7 @@
 module Http.Request
 
-import Data.SortedMap
-import Http.Uri
+import public Data.SortedMap
+import public Http.Uri
 
 %access export
 

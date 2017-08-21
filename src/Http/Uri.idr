@@ -1,6 +1,6 @@
 module Http.Uri
 
-import Data.Vect
+import public Data.Vect
 
 %access public export
 

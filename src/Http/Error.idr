@@ -1,6 +1,6 @@
 module Http.Error
 
-import Network.Socket
+import public Network.Socket
 
 %access public export
 
