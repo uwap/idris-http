@@ -5,14 +5,20 @@ import public Http.Uri
 
 %access export
 
-||| The HTTP Method which is either POST or GET
+||| The HTTP Method
 public export
-data Method = POST | GET | HEAD
+data Method = POST | GET | HEAD | PUT | DELETE | CONNECT | OPTIONS | TRACE | PATCH
 
 implementation Show Method where
   show POST = "POST"
   show GET  = "GET"
   show HEAD = "HEAD"
+  show PUT     = "PUT"
+  show DELETE  = "DELETE"
+  show CONNECT = "CONNECT"
+  show OPTIONS = "OPTIONS"
+  show TRACE   = "TRACE"
+  show PATCH   = "PATCH"
 
 implementation Eq Method where
   x == y = show x == show y
@@ -20,6 +26,12 @@ implementation Eq Method where
 implementation Cast String Method where
   cast "POST" = POST
   cast "HEAD" = HEAD
+  cast "PUT"     = PUT
+  cast "DELETE"  = DELETE
+  cast "CONNECT" = CONNECT
+  cast "OPTIONS" = OPTIONS
+  cast "TRACE"   = TRACE
+  cast "PATCH"   = PATCH
   cast _      = GET
 
 ||| A String-alias for Hosts.
