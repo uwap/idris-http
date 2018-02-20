@@ -24,16 +24,16 @@ for dep in ${dependencies[*]}; do
   name=$(basename $dep)
 
   echo "Downloading $name ..."
-  git clone "$dep" &> /dev/null
+  git clone "$dep"
   checkSuccess $? "Failed to download $name"
   cd "$name"
 
   echo "Building $name ..."
-  idris --build *.ipkg &> /dev/null
+  idris --build *.ipkg
   checkSuccess $? "Failed to build $name"
 
   echo "Installing $name ..."
-  idris --install *.ipkg &> /dev/null
+  idris --install *.ipkg
   checkSuccess $? "Failed to install $name"
   cd ../
 done

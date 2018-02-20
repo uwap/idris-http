@@ -4,65 +4,35 @@ addons:
   apt:
     sources: hvr-ghc
     packages:
-      - cabal-install-1.22
-      - ghc-7.10.1
+      - cabal-install-1.24
+      - ghc-8.0.2
       - happy
+
 cache:
   directories:
-    - ~/.cabal
-    - ~/.ghc
+    - $HOME/.cabal
+    - $HOME/.ghc
 
 env:
-  - GHCVER=7.10.1 CABAL=cabal-1.22
+  - GHCVER=8.0.2 CABAL=cabal-1.24
 
 before_install:
-  - |
-      export PATH=/opt/ghc/$GHCVER/bin:$PATH
-  - $CABAL update
-
-  # Update happy when building with GHC head
-  - |
-    if [ $GHCVER = "head" ] || [ $GHCVER = "7.8.4" ] || [ $GHCVER = "7.10.1" ]; then
-      $CABAL install --constraint=transformers\ installed happy alex
-      export PATH=$HOME/.cabal/bin:$PATH
-    fi
+  - export PATH=/opt/ghc/$GHCVER/bin:$PATH
+  - cabal --version
+  - cabal update
 
 install:
-  - bash -c '
-      {
-        $CABAL install -j idris;
-        echo $? 1> cabal-status;
-      } &
-
-      sleep 1;
-
-      while ps -Af | grep -v grep | grep -q $CABAL; do
-        echo -n .;
-        sleep 1;
-      done;
-
-      exit $(cat cabal-status);
-    '
-  - echo "Installing dependencies"; ./install_dependencies.sh
-
-before_script:
-  - export PATH=$PATH:~/.cabal/bin
+  - cabal install idris --only-dependencies
+  - cabal install idris -j1
+  - echo "Installing dependencies"; export PATH=$PATH:$HOME/.cabal/bin; ./install_dependencies.sh
 
 script:
-  - idris --build http.ipkg
-  - idris --install http.ipkg
+  - ~/.cabal/bin/idris --build http.ipkg
+  - ~/.cabal/bin/idris --install http.ipkg
   - pushd examples/simple
-  - idris --build simple.ipkg
+  - ~/.cabal/bin/idris --build simple.ipkg
   - popd
-
-notifications:
-  irc:
-    channels:
-      - "irc.freenode.org#dagd"
-    skip_join: false
-    template:
-      - "\x0313idris-http\x0f/\x0306%{branch}\x0f \x0314%{commit}\x0f %{message} \x0302\x1f%{build_url}\x0f"
 
 before_cache:
   - find ~/.cabal/ -iname '*.log' -delete #we do not want to cache logs
-  - rm -r ~/.cabal/share/x86_64-linux-ghc-7.10.1/idris-0.9.19.1/http/ #we do not want to cache http, because that's the thing we are testing
+  - rm -r ~/.cabal/share/x86_64-linux-ghc-*/idris-*/http/ #we do not want to cache http, because that's the thing we are testing
