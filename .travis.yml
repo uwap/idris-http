@@ -36,3 +36,6 @@ script:
 before_cache:
   - find ~/.cabal/ -iname '*.log' -delete #we do not want to cache logs
   - rm -r ~/.cabal/share/x86_64-linux-ghc-*/idris-*/http/ #we do not want to cache http, because that's the thing we are testing
+
+notifications:
+  webhooks: "https://ingest.devmode.cloud/hooks/travisci?channel=%23dagd"
