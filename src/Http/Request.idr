@@ -70,7 +70,7 @@ record Request a where
 private
 requestLine : (req : Request a) -> String
 requestLine req =
-  show (method req) ++ " " ++ uriToString (uri req) ++ " " ++ httpVersion ++ "\r\n"
+  show (method req) ++ " " ++ uriToPathString (uri req) ++ " " ++ httpVersion ++ "\r\n"
 
 ||| This is a CRLF seperated list of header-fields as defined in RFC7230 Section 3.2.
 |||

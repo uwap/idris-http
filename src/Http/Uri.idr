@@ -37,11 +37,9 @@ encodeQuery ((k,v) :: []) = urlEncode k ++ "=" ++ urlEncode v
 encodeQuery ((k,v) :: xs) =
   urlEncode k ++ "=" ++ urlEncode v ++ "&" ++ encodeQuery xs
 
-uriToString : URI -> String
-uriToString u = let query = encodeQuery (uriQuery u) in
-  uriScheme u ++ "://" ++ authStr (uriAuth u) ++
-  (uriHost . uriAuth $ u) ++ ":" ++ show (uriPort . uriAuth $ u) ++
-  uriPath u ++ querySeperator query ++ query ++ uriFragment u
+uriToString' : Bool -> URI -> String
+uriToString' full u = let query = encodeQuery (uriQuery u) in
+  fullIfNeeded ++ uriPath u ++ querySeperator query ++ query ++ uriFragment u
   where
     authPassword : URIAuth -> String
     authPassword u' = fromMaybe "" (uriPassword u' >>= pure . (":" ++))
@@ -56,3 +54,15 @@ uriToString u = let query = encodeQuery (uriQuery u) in
     querySeperator : String -> String
     querySeperator "" = ""
     querySeperator _ = "?"
+
+    fullIfNeeded =
+      if full
+      then uriScheme u ++ "://" ++ authStr (uriAuth u) ++
+           (uriHost . uriAuth $ u) ++ ":" ++ show (uriPort . uriAuth $ u)
+      else ""
+
+uriToString : URI -> String
+uriToString = uriToString' True
+
+uriToPathString : URI -> String
+uriToPathString = uriToString' False
