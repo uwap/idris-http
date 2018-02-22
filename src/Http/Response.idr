@@ -92,7 +92,7 @@ parseBodyChunkEncoded = do
 
 private
 bodyParser : SortedMap String String -> Parser String
-bodyParser map with (lookup "text-encoding" map)
+bodyParser map with (lookup "transfer-encoding" map)
   | Just "chunked" = parseBodyChunkEncoded
   | _ = pack <$> many anyChar -- Connection: close
 
