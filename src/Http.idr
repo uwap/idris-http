@@ -34,8 +34,14 @@ sendRequest req = do
     port : Int
     port = uriPort . uriAuth . uri $ req
 
+    portHostHeader : String
+    portHostHeader =
+      if port `List.elem` [80, 443]
+        then ""
+        else ":" ++ show port
+
     extraHeaders : List (String, String)
-    extraHeaders = [("Host", host ++ ":" ++ show port), ("Connection", "close")]
+    extraHeaders = [("Host", host ++ portHostHeader), ("Connection", "close")]
 
     fullRequest : Request a
     fullRequest = record { headers $= insertFrom extraHeaders } req
