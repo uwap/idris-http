@@ -24,7 +24,7 @@ sendRequest : Request a -> IO (Either HttpError (RawResponse String))
 sendRequest req = do
     Right sock <- socket AF_INET Stream 0 | Left err => pure (Left $ HttpSocketError err)
     0 <- connect sock (Hostname host) port | err => pure (Left $ HttpSocketError err)
-    Right _ <- send sock (resolveRequest req) | Left err => pure (Left $ HttpSocketError err)
+    Right _ <- send sock (resolveRequest fullRequest) | Left err => pure (Left $ HttpSocketError err)
     str <- readResp sock ""
     pure (Right (MkRawResponse str))
   where
@@ -34,11 +34,16 @@ sendRequest req = do
     port : Int
     port = uriPort . uriAuth . uri $ req
 
+    extraHeaders : List (String, String)
+    extraHeaders = [("Host", host ++ ":" ++ show port), ("Connection", "close")]
+
+    fullRequest : Request a
+    fullRequest = record { headers $= insertFrom extraHeaders } req
+
 httpRequest : Request a -> IO (Either HttpError (Response String))
 httpRequest req = pure $ !(sendRequest req) >>= parseResponse
 
 simpleHttp : Host -> Port -> (path : String) -> IO (Either HttpError (Response String))
 simpleHttp host port path = do
-  let headers = Data.SortedMap.fromList [("Host", host), ("Connection", "close")]
-  repl <- sendRequest (MkRequest GET (MkURI "http" (MkURIAuth Nothing Nothing host port) path [] "") "" headers)
+  repl <- sendRequest (MkRequest GET (MkURI "http" (MkURIAuth Nothing Nothing host port) path [] "") "" empty)
   pure (repl >>= parseResponse)
