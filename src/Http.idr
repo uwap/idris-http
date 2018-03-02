@@ -20,11 +20,12 @@ readResp sock buf = do
   readResp sock (buf ++ str)
 
 private
-sendRequest : Request a -> IO (Either HttpError (RawResponse String))
+sendRequest : Request String -> IO (Either HttpError (RawResponse String))
 sendRequest req = do
     Right sock <- socket AF_INET Stream 0 | Left err => pure (Left $ HttpSocketError err)
     0 <- connect sock (Hostname host) port | err => pure (Left $ HttpSocketError err)
     Right _ <- send sock (resolveRequest fullRequest) | Left err => pure (Left $ HttpSocketError err)
+    Right _ <- send sock (requestBody fullRequest) | Left err => pure (Left $ HttpSocketError err)
     str <- readResp sock ""
     pure (Right (MkRawResponse str))
   where
@@ -41,12 +42,16 @@ sendRequest req = do
         else ":" ++ show port
 
     extraHeaders : List (String, String)
-    extraHeaders = [("Host", host ++ portHostHeader), ("Connection", "close")]
+    extraHeaders = let standard = [("Host", host ++ portHostHeader), ("Connection", "close")]
+                       length = case length $ requestBody req of
+                         Z => []
+                         n => [("Content-Length", show n)]
+                   in standard ++ length
 
-    fullRequest : Request a
+    fullRequest : Request String
     fullRequest = record { headers $= insertFrom extraHeaders } req
 
-httpRequest : Request a -> IO (Either HttpError (Response String))
+httpRequest : Request String -> IO (Either HttpError (Response String))
 httpRequest req = pure $ !(sendRequest req) >>= parseResponse
 
 simpleHttp : Host -> Port -> (path : String) -> IO (Either HttpError (Response String))
